@@ -138,6 +138,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-gatsby-cloud`,
     shouldAnalyseBundle && {
       resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
