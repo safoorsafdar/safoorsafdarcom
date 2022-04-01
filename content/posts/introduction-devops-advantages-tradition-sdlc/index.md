@@ -1,7 +1,6 @@
 ---
 title: "Introduction to DevOps, advantages over tradition SDLC"
 date: 2021-12-12
-layout: single
 tags:
   - devops
 ---
@@ -23,7 +22,7 @@ DevOps has become one of the most valuable business disciplines for enterprises 
 - A culture that promotes collaboration between Development and Operations. Team to deploy code to production faster in an automated & repeatable way.
 - It helps to increase an organization's speed to deliver applications and services.
 
-## What are the advantages of DevOps over traditional SDLC?
+### What are the advantages of DevOps over traditional SDLC?
 
 With the software development moving away from the traditional SDLC and towards a collaborative DevOps approach teams are benefiting from a more efficient process. Here are a few the points that explain why DevOps is better than SDLC:
 

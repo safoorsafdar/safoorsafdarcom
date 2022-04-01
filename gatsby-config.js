@@ -21,10 +21,12 @@ module.exports = {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
       // See the theme's README for all available options
       options: {
+        blogPath: "/posts",
+        postsPrefix: "/post/",
         navigation: [
           {
-            title: `Blog`,
-            slug: `/blog`,
+            title: `Posts`,
+            slug: `/posts`,
           },
           {
             title: `About`,
@@ -64,9 +66,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `minimal-blog - @lekoarts/gatsby-theme-minimal-blog`,
-        short_name: `minimal-blog`,
-        description: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and code highlighting.`,
+        name: `Safoor Safdar, well known Cloud Solution Architect and Consultant DevOps`,
+        short_name: `safoorsafdar`,
+        description: `Safoor Safdar is very well known cloud solution architect and devops. Hire for consultation.`,
         start_url: `/`,
         background_color: `#fff`,
         // This will impact how browsers show your PWA/website

@@ -18,7 +18,6 @@ In the era of DevOps and DevSecOps, from infrastructure to application configura
 
 **How important is it to create your diagram as code? You might ask.**
 
-<br />
 Creating diagram as code can be similar to software development. It can help you
 to keep your diagrams updated as your system grows, but these reasons may be why
 it can be more helpful:
@@ -30,8 +29,7 @@ it can be more helpful:
 
 [Diagrams][diagram] is the tool that lets you draw a cloud system architect in python code. As per the author, its main focus was to create prototyping new system architect design without any design tools.
 
-**Note!** It only contains code for drawing cloud system architecture diagrams and does not control any terraform or cloud template to manage your cloud resources.
-{: .notice--info}
+> **Note!** _It only contains code for drawing cloud system architecture diagrams and does not control any terraform or cloud template to manage your cloud resources._
 
 "Diagrams" can be used to create cloud system architect diagrams for AWS, Azure, GCP, on-premise, Kubernetes, Alibaba Cloud, and Oracle Cloud.
 
@@ -65,8 +63,9 @@ It will be saved as `web_service.png` in your `$(pwd)/out` directory.
 
 You can explore more similar examples on the [examples](https://diagrams.mingrammer.com/docs/getting-started/examples) page.
 
-> I would suggest you watch a presentation of "[Scaling up to Your First 10 Million User](https://youtu.be/Ma3xWDXTxRg)" from AWS where they showcase this library in a more appropriate approach.
-> In one of my microservices-based projects, we used mono-repo and all of the services represented a single responsibility. At that time, Golang and Nodejs were the only two languages that were part of the tech stack for software development.
+> 💡 _I would suggest you watch a presentation of "[Scaling up to Your First 10 Million User](https://youtu.be/Ma3xWDXTxRg)" from AWS where they showcase this library in a more appropriate approach._
+
+`In one of my microservices-based projects, we used mono-repo and all of the services represented a single responsibility. At that time, Golang and Nodejs were the only two languages that were part of the tech stack for software development.`
 
 We wanted to achieve two things: First, every service should have its own diagram that is consistent with other diagrams and discusses what dependency it uses, what third party and internal communication hierarchy is, how it communicates with other components such as database and Redis cluster. Also, what component/properties does it have (for example Prometheus metrics for monitoring, logging and HA setup, resources size)?
 
