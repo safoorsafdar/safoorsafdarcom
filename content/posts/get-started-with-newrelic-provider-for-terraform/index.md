@@ -7,7 +7,7 @@ tags:
   - newrelic
   - iac
 ---
-# New Relic Terraform Provider step by step
+
 
 ```hcl
 # Configure terraform
