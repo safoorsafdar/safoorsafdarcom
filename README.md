@@ -13,5 +13,3 @@ The site is built with React, using Gatsby and a custom version of the 'Minimal 
 ## License
 
 Copyright (c) 2022 - Present Safoor Safdar
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A611K61)
