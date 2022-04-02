@@ -7,14 +7,15 @@ tags:
 ---
 # New Relic Terraform Provider step by step
 
-```
+
+
+```terraform
 # Configure terraform
 terraform {
-  required_version = "~> 0.14.0"
+  required_version = "~> 1.0"
   required_providers {
     newrelic = {
       source  = "newrelic/newrelic"
-      version = "~> 2.9.0"
     }
   }
 }
@@ -26,9 +27,9 @@ terraform {
 
 `source` is the New Relic Terraform provider. This brings the NR TF providers into your scripts to be interacted with.
 
-`version` within the newrelic block is the version of the New Relic provider that you wish to use.
+`version` within the NewRelic block is the version of the New Relic provider that you wish to use.
 
-```
+```terraform
 # Configure the New Relic provider
 provider "newrelic" {
   api_key = "<New Relic key>"
