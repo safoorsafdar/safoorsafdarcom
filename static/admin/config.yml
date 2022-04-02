@@ -1,6 +1,11 @@
 backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
+  accept_roles: #optional - accepts all users if left out
+    - admin
+    - editor
+ 
+publish_mode: editorial_workflow
 
 media_folder: static/img
 public_folder: /img
@@ -20,3 +25,4 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {label: Tags, name: tags, widget: list, default: ['devops', 'aws']}
