@@ -3,13 +3,13 @@ title: Get started with NewRelic Provider for Terraform
 date: 2022-04-02T12:56:01.540Z
 tags:
   - devops
-  - aws
+  - terraform
+  - newrelic
+  - iac
 ---
 # New Relic Terraform Provider step by step
 
-
-
-```terraform
+```hcl
 # Configure terraform
 terraform {
   required_version = "~> 1.0"
@@ -29,7 +29,7 @@ terraform {
 
 `version` within the NewRelic block is the version of the New Relic provider that you wish to use.
 
-```terraform
+```hcl
 # Configure the New Relic provider
 provider "newrelic" {
   api_key = "<New Relic key>"
@@ -42,7 +42,7 @@ provider "newrelic" {
 
 Giving our authentication credentials lets our script interact through the provider. Switch region to "EU" if you use the New Relic EU platform - i.e. login through one.eu.newrelic.com
 
-```
+```hcl
 # Read an APM application resource
 data "newrelic_entity" "node-workshop-app" {
   name = "Node Workshop"
@@ -57,7 +57,7 @@ Here, we are *reading* a resource from our New Relic account. Where we have `"no
 Where we have name `"Node Workshop"` - this is the name of the entity within New Relic. 
 By first fetching this resource, we can then reference it in our Terraform to do things such as apply an alert condition to it.
 
-```
+```hcl
 # Create an alert policy
 resource "newrelic_alert_policy" "node-alerts" {
   name = "Demo Node Alerts via Terraform"
@@ -69,7 +69,7 @@ resource "newrelic_alert_policy" "node-alerts" {
 This will create the resource of an alert policy. The `"node-alerts"` is the local reference within Terraform.
 The `name` the attribute is the name for the alert policy as seen in New Relic.
 
-```
+```hcl
 # Add a condition
 resource "newrelic_nrql_alert_condition" "node-workshop-slow-txn" {
   policy_id                    = newrelic_alert_policy.node-alerts.id
@@ -104,7 +104,7 @@ The rest is meta information we need to define the condition.
 
 At this point if we perform `terraform apply` (assuming a `terraform init` happened some point earlier) you can see that Terraform is ready to perfor two actions, that is creating the alert policy we defined, and create the condition we defined.
 
-```
+```hcl
 # Add a notification channel
 resource "newrelic_alert_channel" "email-gary" {
   name = "email Gary Spencer"
@@ -126,7 +126,7 @@ The rest is the meta information necessary to create a notification channel of t
 
 And now if we perform a `terraform plan` you can see that three actions are ready to be performed by terraform. The two earlier and now the creation of a notification channel.
 
-```
+```hcl
 # Link the channel to the policy
 resource "newrelic_alert_policy_channel" "email-to-gary" {
   policy_id  = newrelic_alert_policy.node-alerts.id
@@ -149,7 +149,7 @@ If after a `terraform apply` you are happy with the stated actions, you can perf
 
 You should then see *Apply complete!* and the changes made in New Relic.
 
-```
+```hcl
 # Add a Simple Ping Synthetics monitor
 resource "newrelic_synthetics_monitor" "node-workshop-home-synthetics" {
   name = "Node Workshop Homepage"
