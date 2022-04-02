@@ -6,9 +6,15 @@ backend:
     - editor
  
 publish_mode: editorial_workflow
+show_preview_links: false
 
-media_folder: static/img
-public_folder: /img
+media_folder: static/img/uploads
+public_folder: /img/uploads
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
 
 collections:
   - name: 'posts'
