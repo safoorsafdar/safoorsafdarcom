@@ -1,6 +1,6 @@
-## safoorsafdar.com
+## safoorsafdar.com ✨
 
-A [personal website](https://safoorsafdar.com/) where I keep:
+A [personal website](https://safoorsafdar.com/) 🤏 where I keep:
 
 - information about myself
 - blog posts
