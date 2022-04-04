@@ -72,6 +72,8 @@ The table below shows the available environment variables equivalent to attribut
 | api_key          | NEW_RELIC_API_KEY       |
 | region           | NEW_RELIC_REGION        |
 
+
+
 With your new relic provider configured, initialize the Terraform:
 `terraform init`
 
@@ -128,7 +130,6 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 
 > **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
 
-
 ## Alerts Settings
 
 ```hcl
@@ -166,8 +167,6 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
   channel_ids = [newrelic_alert_channel.team_email.id, newrelic_alert_channel.slack_notification.id]
 }
 ```
-
-
 
 ## Alerts For Traffic
 
@@ -306,7 +305,6 @@ resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
 }
 ```
 
-
 ## Workload Definition
 
 ```hcl
@@ -321,7 +319,5 @@ resource "newrelic_workload" "workload_production" {
   scope_account_ids = [data.newrelic_account.acc.account_id]
 }
 ```
-
-
 
 You may also want to consider automating this process in your CI/CD pipeline.  Use Terraform's [recommended practices guide](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) to learn more about their recommended workflow and how to evolve your provisioning practices.
