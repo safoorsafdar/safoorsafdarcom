@@ -1,6 +1,6 @@
 ---
 title: Get started with NewRelic Provider for Terraform
-date: 2022-04-04T11:54:38.735Z
+date: 2022-04-04T13:12:33.021Z
 tags:
   - devops
   - terraform
