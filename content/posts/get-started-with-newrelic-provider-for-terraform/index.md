@@ -11,9 +11,7 @@ tags:
 
 On the other hand, New Relic is a web application performance service designed to work in real-time with your live web app. 
 
-
 In this get started guide, you can learn how to set up New Relic. More specifically, you provision an alert policy, alert conditions, alert channels, and Dashboard. 
-
 
 ## Before you begin
 
@@ -26,7 +24,7 @@ mkdir your-project && cd your-project
 touch main.tf
 ```
 
-Now, let's instruct Terraform to install and use NewRelic Provider by setting the `terraform` and `required_providers` block in `main.tf`
+Now, let's instruct Terraform to install and use the NewRelic provider by setting the `terraform` and `required_providers` block in `main.tf`
 
 ```hcl
 terraform {
@@ -41,15 +39,12 @@ terraform {
     }
   }
 }
-
 ```
+
 **What is happening here?**
-`required_version` is your Terraform version validation.  that insure your terraform code syntax matches with installed Terraform version. You can your terraform version with `terraform -v`. 
-`required_providers`.`source` is the name of NewRelic providers. Thats brings the NewRelic Provider into terrafom to interact with the new relic.
-`required_providers`.`version` ensure new relic provider verion that you wish to use. 
- 
-
-
+- `required_version` is your Terraform version validation. That ensure your terraform code syntax matches with the installed Terraform version. You can your terraform version with `terraform -v`. 
+- `required_providers`.`source` is the name of NewRelic providers. That's brings the NewRelic Provider into terrafom to interact with the new relic.
+- `required_providers`.`version` ensure the new relic provider version that you wish to use. 
 
 ```hcl
 provider "newrelic" {
@@ -59,7 +54,6 @@ provider "newrelic" {
 }
  
 ```
-
 
 ## Data for New Relic
 
