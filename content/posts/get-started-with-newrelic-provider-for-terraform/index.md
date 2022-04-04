@@ -338,6 +338,6 @@ This will provision New Relic Work Load with the
 
 * `name` of "Production-WorkLoad" 
 * `account_id` on the defined account 
-* and `entity_search_query` would be based on environment tags we defined in the implementation of our resources. 
+* and `entity_search_query` would be based on environment tags we defined in the implementation of our resources with `newrelic_entity_tags`. 
 
 You may also want to consider automating this process in your CI/CD pipeline.  Use Terraform's [recommended practices guide](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) to learn more about their recommended workflow and how to evolve your provisioning practices.
