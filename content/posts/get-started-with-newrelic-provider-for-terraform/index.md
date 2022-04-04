@@ -254,6 +254,8 @@ resource "newrelic_alert_channel" "team_email" {
 }
 ```
 
+If you want to specify multiple recipients, use a comma-delimited list of emails.
+
 ```hcl
 resource "newrelic_alert_channel" "slack_notification" {
   name = "Slack-Notification"
@@ -266,7 +268,8 @@ resource "newrelic_alert_channel" "slack_notification" {
   }
 }
 ```
-When you define your New Relic channels, you need to associate them with the respective New Relic Alert Policy. 
+
+Last, but not least, you need to associate them with the respective New Relic alert policy. Create `newrelic_alert_policy_channel`
 
 
 ```hcl
