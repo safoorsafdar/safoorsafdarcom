@@ -7,24 +7,59 @@ tags:
   - newrelic
   - iac
 ---
-## Provider Definition
+[Terraform](https://www.terraform.io/) is a popular infrastructure-as-code software tool built by HashiCorp. You can use it to provision all kinds of infrastructure and services, including New Relic dashboards and alerts.
+
+On the other hand, New Relic is a web application performance service designed to work in real-time with your live web app. 
+
+
+In this get started guide, you can learn how to set up New Relic. More specifically, you provision an alert policy, alert conditions, alert channels, and Dashboard. 
+
+
+## Before you begin
+
+To use this guide, you should have some basic knowledge of both New Relic and Terraform. If you haven't deployed a New Relic open-source agent yet, [install New Relic](https://docs.newrelic.com/docs/agents/manage-apm-agents/installation/install-agent) for your application. Also, [install the Terraform CLI](https://learn.hashicorp.com/collections/terraform/cli).
+
+## Bootstrap Terraform
+
+```shell
+mkdir your-project && cd your-project
+touch main.tf
+```
+
+Now, let's instruct Terraform to install and use NewRelic Provider by setting the `terraform` and `required_providers` block in `main.tf`
 
 ```hcl
 terraform {
+  # Require Terraform version 1.x.x (recommended)
   required_version = "~> 1.0"
+  
+  # Require the latest 2.x version of the New Relic provider
   required_providers {
     newrelic = {
       source = "newrelic/newrelic"
+      version = "~> 2.0"
     }
   }
 }
 
+```
+**What is happening here?**
+`required_version` is your Terraform version validation that insure your terraform code syntax matches with installed Terraform version. You can your terraform version with `terraform -v`. 
+`required_providers`.`source` is the name of NewRelic providers. Thats brings the NewRelic Provider into terrafom to interact with the new relic.
+`required_providers`.`version` ensure new relic provider verion that you wish to use. 
+ 
+
+
+
+```hcl
 provider "newrelic" {
   account_id = "<your account>"
   api_key    = "NRAK-<your api key>" # usually prefixed with 'NRAK'
   region     = "EU" # Valid regions are US and EU
 }
+ 
 ```
+
 
 ## Data for New Relic
 
