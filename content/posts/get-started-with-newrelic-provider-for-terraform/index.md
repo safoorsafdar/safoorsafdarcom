@@ -130,45 +130,20 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 
 > **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
 
-## Alerts Settings
+## Create a New Relic alert Policy
 
 ```hcl
 resource "newrelic_alert_policy" "golden_signal_policy" {
-  name = "GoldenSignal-ManagedPolicy"
-}
-
-resource "newrelic_alert_channel" "team_email" {
-  name = "Email-Notification"
-  type = "email"
-
-  config {
-    recipients              = "<Notification Email>"
-    include_json_attachment = "1"
-  }
+  name = "Golden Signal - ManagedPolicy "
 }
 ```
+- `name` is the name of the Alert Policy. 
 
-# Slack notification channel
+## Define alert conditions 
 
-```hcl
-resource "newrelic_alert_channel" "slack_notification" {
-  name = "Slack-Notification"
-  type = "slack"
+Next, add alert conditions for your application based on the four golden signals: latency, traffic, errors, and saturation. Apply these alert conditions to the alert policy you created in the previous step.
 
-  config {
-    # Use the URL provided in your New Relic Slack integration
-    url     = "<Slack Hooks>"
-    channel = "proj-alerts"
-  }
-}
-
-resource "newrelic_alert_policy_channel" "golden_signals" {
-  policy_id   = newrelic_alert_policy.golden_signal_policy.id
-  channel_ids = [newrelic_alert_channel.team_email.id, newrelic_alert_channel.slack_notification.id]
-}
-```
-
-## Alerts For Traffic
+### Traffic
 
 ```hcl
 # Low throughput
@@ -192,7 +167,7 @@ resource "newrelic_alert_condition" "throughput_web" {
 }
 ```
 
-## Alerts for Saturation
+### Saturation
 
 ```hcl
 # High CPU usage
@@ -215,7 +190,7 @@ resource "newrelic_infra_alert_condition" "high_cpu_utils" {
 }
 ```
 
-## Alerts for Latency
+### Latency
 
 ```hcl
 # Response time
@@ -260,6 +235,43 @@ resource "newrelic_alert_condition" "error_percentage" {
   }
 }
 ```
+
+ 
+
+## Get notified when an alert triggers
+
+```hcl
+
+resource "newrelic_alert_channel" "team_email" {
+  name = "Email-Notification"
+  type = "email"
+
+  config {
+    recipients              = "<Notification Email>"
+    include_json_attachment = "1"
+  }
+}
+```
+
+```hcl
+resource "newrelic_alert_channel" "slack_notification" {
+  name = "Slack-Notification"
+  type = "slack"
+
+  config {
+    # Use the URL provided in your New Relic Slack integration
+    url     = "<Slack Hooks>"
+    channel = "proj-alerts"
+  }
+}
+
+resource "newrelic_alert_policy_channel" "golden_signals" {
+  policy_id   = newrelic_alert_policy.golden_signal_policy.id
+  channel_ids = [newrelic_alert_channel.team_email.id, newrelic_alert_channel.slack_notification.id]
+}
+```
+
+
 
 ## Browser App-based Dashboard
 
