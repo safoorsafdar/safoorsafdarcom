@@ -77,7 +77,7 @@ With your new relic provider configured, initialize the Terraform:
 
 ## Data for New Relic
 
-With New Relic Provider configured and initialized, you can define various resources for your application. 
+With New Relic provider configured and initialized, you can define various resources for your application. 
 
 As you will be targeting a specific application. You can use `newrelic_entity` data to fetch information from New Relic to reference in terraform code. 
 
@@ -104,9 +104,9 @@ data "newrelic_account" "acc" {
 * `newrelic-entity.app_browser` is to fetch information for Browser New Relic as in my case we have APM and Browser application on New Relic. 
   `newrelic_account` is to get information about the New Relic account so you can reference it later in your code. 
 
-At this point, you should be able to test your terraform code with a dry run: `terraform plan`, as the response to the `plan` command, you should see Terraform execution plan.
+> **Info!** At this point, you should be able to test your terraform code with a dry run: `terraform plan`, as a response to the `plan` command, you should see Terraform execution plan.
 
-### Add appropriate Tags to your New Relic Application
+It's considered a best practice to tag all your resources on Cloud. Similarly, we can tag our resources on New Relic with `newrelic_entity_tags`. Let's tag our APM and Browser New Relic application. 
 
 ```hcl
 resource "newrelic_entity_tags" "app_apm_tags" {
@@ -126,20 +126,8 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 }
 ```
 
-## Workload Definition
+> **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
 
-```hcl
-resource "newrelic_workload" "workload_production" {
-  name       = "Production-WorkLoad"
-  account_id = data.newrelic_account.acc.account_id
-
-  entity_search_query {
-    query = "tags.accountId='${data.newrelic_account.acc.account_id}' AND tags.Environment='Production'"
-  }
-
-  scope_account_ids = [data.newrelic_account.acc.account_id]
-}
-```
 
 ## Alerts Settings
 
@@ -179,49 +167,7 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
 }
 ```
 
-## Browser App-based Dashboard
 
-```hcl
-resource "newrelic_one_dashboard" "dashboard_website_performance" {
-  name = "DCOP-WebsitePerformance"
-
-  page {
-    name = "Sessions"
-
-widget_line {
-  title  = "Unique User Sessions"
-  row    = 1
-  column = 1
-
-  nrql_query {
-    query = "FROM PageView SELECT uniqueCount(session) WHERE appName='${data.newrelic_entity.app_browser.name}' TIMESERIES"
-  }
-}
-
-widget_markdown {
-  title  = "Dashboard Note"
-  row    = 1
-  column = 9
-
-  text = "### Helpful Links\n\n* [New Relic One](https://one.newrelic.com)\n* [Developer Portal](https://developer.newrelic.com)"
-}
-
-
-  }
-}
-```
-
-### Add appropriate tags
-
-```hcl
-resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
-  guid = newrelic_one_dashboard.dashboard_website_performance.guid
-  tag {
-    key    = "Environment"
-    values = ["Production"]
-  }
-}
-```
 
 ## Alerts For Traffic
 
@@ -315,3 +261,67 @@ resource "newrelic_alert_condition" "error_percentage" {
   }
 }
 ```
+
+## Browser App-based Dashboard
+
+```hcl
+resource "newrelic_one_dashboard" "dashboard_website_performance" {
+  name = "DCOP-WebsitePerformance"
+
+  page {
+    name = "Sessions"
+
+widget_line {
+  title  = "Unique User Sessions"
+  row    = 1
+  column = 1
+
+  nrql_query {
+    query = "FROM PageView SELECT uniqueCount(session) WHERE appName='${data.newrelic_entity.app_browser.name}' TIMESERIES"
+  }
+}
+
+widget_markdown {
+  title  = "Dashboard Note"
+  row    = 1
+  column = 9
+
+  text = "### Helpful Links\n\n* [New Relic One](https://one.newrelic.com)\n* [Developer Portal](https://developer.newrelic.com)"
+}
+
+
+  }
+}
+```
+
+### Add appropriate tags
+
+```hcl
+resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
+  guid = newrelic_one_dashboard.dashboard_website_performance.guid
+  tag {
+    key    = "Environment"
+    values = ["Production"]
+  }
+}
+```
+
+
+## Workload Definition
+
+```hcl
+resource "newrelic_workload" "workload_production" {
+  name       = "Production-WorkLoad"
+  account_id = data.newrelic_account.acc.account_id
+
+  entity_search_query {
+    query = "tags.accountId='${data.newrelic_account.acc.account_id}' AND tags.Environment='Production'"
+  }
+
+  scope_account_ids = [data.newrelic_account.acc.account_id]
+}
+```
+
+
+
+You may also want to consider automating this process in your CI/CD pipeline.  Use Terraform's [recommended practices guide](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) to learn more about their recommended workflow and how to evolve your provisioning practices.
