@@ -43,11 +43,11 @@ terraform {
 
 * `required_version` is your Terraform version validation. That ensures your terraform code syntax matches with the installed Terraform version. You can your terraform version with `terraform -v`. 
 * `required_providers`.`source` is the name of NewRelic providers. That brings the new relic provider into terraform to interact with the new relic.
-* `required_providers`.`version` ensure the new relic provider version that you wish to use. 
-
-
+* `required_providers`.`version` ensures the new relic provider version that you wish to use. 
 
 ## Configure New Relic Provider
+
+With Terraform all set, let's configure the New Relic `provider` with the following items:
 
 ```hcl
 provider "newrelic" {
@@ -57,6 +57,10 @@ provider "newrelic" {
 }
  
 ```
+
+- `account_id` - Your New Relic Account ID. Visit to learn more https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id
+- `api_key` - Your Personal New Relic API Key. Visit to learn more https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#user-api-key
+- `region` - Valid regions are the US and EU. Your region is `US` if the page is located at `one.newrelic.com` and `EU` if your account is located at `one.eu.newrelic.com`
 
 ## Data for New Relic
 
