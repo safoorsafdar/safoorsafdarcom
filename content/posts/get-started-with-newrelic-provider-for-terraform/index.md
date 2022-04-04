@@ -58,7 +58,7 @@ provider "newrelic" {
 }
  
 ```
-
+**What is happening here?**
 * `account_id` - Your New Relic Account ID. Visit to learn more https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id
 * `api_key` - Your Personal New Relic API Key. Visit to learn more https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#user-api-key
 * `region` - Valid regions are the US and EU. Your region is `US` if the New Relic page is located at `one.newrelic.com` and `EU` if your account is located at `one.eu.newrelic.com`
@@ -100,12 +100,11 @@ data "newrelic_account" "acc" {
   account_id = "<your account>"
 }
 ```
-
+**What is happening here?**
 * `newrelic_entity.app_apm` is to fetch information for APM New Relic Application. 
 * `newrelic_entity.app_browser` is to fetch information for Browser New Relic as in my case we have APM and Browser application on New Relic. 
 * `newrelic_account` is to get information about the New Relic account so you can reference it later in your code. 
 
-> **Info!** At this point, you should be able to test your terraform code with a dry run: `terraform plan`, as a response to the `plan` command, you should see Terraform execution plan.
 
 It's considered a best practice to tag all your resources on Cloud. Similarly, we can tag our resources on New Relic with `newrelic_entity_tags`. Let's tag our APM and Browser New Relic application. 
 
@@ -127,7 +126,11 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 }
 ```
 
-## Create a New Relic alert Policy
+At this point, you should be able to add tags to your application after the command `terraform apply`. 
+
+Now you have basic infrastructure as code for Terraform up and running. Let's provision other available resources to muture our New Relic implementation.
+
+## Create a New Relic alert policy
 
 ```hcl
 resource "newrelic_alert_policy" "golden_signal_policy" {
@@ -279,7 +282,7 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
 
 Currently, I am not able to find a possible way to segregate the alerts based on priority. For Example, send warning notifications to the Slack channel and critical notifications to the email channel. 
 
-One way might be possible to achieve mentioned problem, We can separate alert policies for warning and critical and associate channels according to alert policy. 
+One possible way could be to separate alert policies for warning and critical and associate channels according to alert policy. 
 
 ## Browser Dashboard
 We can also provision the New Relic dashboard with `newrelic_one_dashboard`.
