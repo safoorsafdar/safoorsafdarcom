@@ -101,9 +101,9 @@ data "newrelic_account" "acc" {
 }
 ```
 
-* `newrelic-entity.app_apm` is to fetch information for APM New Relic Application. 
-* `newrelic-entity.app_browser` is to fetch information for Browser New Relic as in my case we have APM and Browser application on New Relic. 
-  `newrelic_account` is to get information about the New Relic account so you can reference it later in your code. 
+* `newrelic_entity.app_apm` is to fetch information for APM New Relic Application. 
+* `newrelic_entity.app_browser` is to fetch information for Browser New Relic as in my case we have APM and Browser application on New Relic. 
+* `newrelic_account` is to get information about the New Relic account so you can reference it later in your code. 
 
 > **Info!** At this point, you should be able to test your terraform code with a dry run: `terraform plan`, as a response to the `plan` command, you should see Terraform execution plan.
 
