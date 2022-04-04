@@ -58,23 +58,25 @@ provider "newrelic" {
  
 ```
 
-- `account_id` - Your New Relic Account ID. Visit to learn more https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id
-- `api_key` - Your Personal New Relic API Key. Visit to learn more https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#user-api-key
-- `region` - Valid regions are the US and EU. Your region is `US` if the page is located at `one.newrelic.com` and `EU` if your account is located at `one.eu.newrelic.com`
+* `account_id` - Your New Relic Account ID. Visit to learn more https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id
+* `api_key` - Your Personal New Relic API Key. Visit to learn more https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#user-api-key
+* `region` - Valid regions are the US and EU. Your region is `US` if the page is located at `one.newrelic.com` and `EU` if your account is located at `one.eu.newrelic.com`
 
 You can also configure the New Relic provider using the environment variable. This is a useful way to set default values instead of hard coding into code and publishing it to the repository. 
 
 The table below shows the available environment variables equivalent to attributes and all of these are required attributes. 
 
-| Schema Attribute  |  Equivalent Env Variable |
-|---|---|
-|  account_id |  NEW_RELIC_ACCOUNT_ID |
-| api_key  | NEW_RELIC_API_KEY  |
-| region  |  NEW_RELIC_REGION |
+| Schema Attribute | Equivalent Env Variable |
+| ---------------- | ----------------------- |
+| account_id       | NEW_RELIC_ACCOUNT_ID    |
+| api_key          | NEW_RELIC_API_KEY       |
+| region           | NEW_RELIC_REGION        |
 
 
-with the new relic provider configured, initialize the Terraform:
+
+With your new relic provider configured, initialize the Terraform:
 `terraform init`
+
 
 
 ## Data for New Relic
