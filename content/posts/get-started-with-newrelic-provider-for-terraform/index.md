@@ -72,8 +72,6 @@ The table below shows the available environment variables equivalent to attribut
 | api_key          | NEW_RELIC_API_KEY       |
 | region           | NEW_RELIC_REGION        |
 
-
-
 With your new relic provider configured, initialize the Terraform:
 `terraform init`
 
@@ -137,9 +135,10 @@ resource "newrelic_alert_policy" "golden_signal_policy" {
   name = "Golden Signal - Managed Policy "
 }
 ```
-- `name` is the name of the Alert Policy. 
 
-## Define alert conditions 
+* `name` is the name of the Alert Policy. 
+
+## Define alert conditions
 
 Next, add alert conditions for your application based on the four golden signals: latency, traffic, errors, and saturation. Apply these alert conditions to the alert policy you created in the previous step.
 
@@ -213,7 +212,7 @@ resource "newrelic_alert_condition" "response_time_web" {
 }
 ```
 
-## Alerts for Error
+## Errors
 
 ```hcl
 # Error percentage
@@ -237,10 +236,10 @@ resource "newrelic_alert_condition" "error_percentage" {
 ```
 
 ## Get notified when an alert triggers
+
 There are multiple ways available from New Relic to get notified when an alert triggers. For starters, we can use Email and Slack notifications. 
 
 ```hcl
-
 resource "newrelic_alert_channel" "team_email" {
   name = "Email-Notification"
   type = "email"
@@ -271,7 +270,6 @@ You need to add New Relic Slack App to your Slack account. and select the Slack 
 
 Last, but not least, you need to associate them with the respective New Relic alert policy. Create `newrelic_alert_policy_channel`.
 
-
 ```hcl
 resource "newrelic_alert_policy_channel" "golden_signals" {
   policy_id   = newrelic_alert_policy.golden_signal_policy.id
@@ -280,8 +278,6 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
 ```
 
 ## Browser Dashboard
-
-
 
 ```hcl
 resource "newrelic_one_dashboard" "dashboard_website_performance" {
@@ -337,10 +333,11 @@ resource "newrelic_workload" "workload_production" {
   scope_account_ids = [data.newrelic_account.acc.account_id]
 }
 ```
-This will provision New Relic Work Load with the 
-- `name` of "Production-WorkLoad" 
-- `account_id` on the defined account 
-- and `entity_search_query` would be based on environment tags we defined in the implementation of our resources. 
 
+This will provision New Relic Work Load with the 
+
+* `name` of "Production-WorkLoad" 
+* `account_id` on the defined account 
+* and `entity_search_query` would be based on environment tags we defined in the implementation of our resources. 
 
 You may also want to consider automating this process in your CI/CD pipeline.  Use Terraform's [recommended practices guide](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) to learn more about their recommended workflow and how to evolve your provisioning practices.
