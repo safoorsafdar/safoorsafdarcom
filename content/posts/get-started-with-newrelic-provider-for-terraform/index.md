@@ -134,7 +134,7 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 
 ```hcl
 resource "newrelic_alert_policy" "golden_signal_policy" {
-  name = "Golden Signal - ManagedPolicy "
+  name = "Golden Signal - Managed Policy "
 }
 ```
 - `name` is the name of the Alert Policy. 
@@ -236,8 +236,6 @@ resource "newrelic_alert_condition" "error_percentage" {
 }
 ```
 
- 
-
 ## Get notified when an alert triggers
 There are multiple ways available from New Relic to get notified when an alert triggers. For starters, we can use Email and Slack notifications. 
 
@@ -269,7 +267,9 @@ resource "newrelic_alert_channel" "slack_notification" {
 }
 ```
 
-Last, but not least, you need to associate them with the respective New Relic alert policy. Create `newrelic_alert_policy_channel`
+You need to add New Relic Slack App to your Slack account. and select the Slack channel to send the notification. 
+
+Last, but not least, you need to associate them with the respective New Relic alert policy. Create `newrelic_alert_policy_channel`.
 
 
 ```hcl
@@ -279,13 +279,13 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
 }
 ```
 
+## Browser Dashboard
 
 
-## Browser App-based Dashboard
 
 ```hcl
 resource "newrelic_one_dashboard" "dashboard_website_performance" {
-  name = "DCOP-WebsitePerformance"
+  name = "Website Performance"
 
   page {
     name = "Sessions"
@@ -307,8 +307,6 @@ widget_markdown {
 
   text = "### Helpful Links\n\n* [New Relic One](https://one.newrelic.com)\n* [Developer Portal](https://developer.newrelic.com)"
 }
-
-
   }
 }
 ```
@@ -325,7 +323,7 @@ resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
 }
 ```
 
-## Workload Definition
+## Organize New Relic resources in WorkLoad
 
 ```hcl
 resource "newrelic_workload" "workload_production" {
@@ -339,5 +337,10 @@ resource "newrelic_workload" "workload_production" {
   scope_account_ids = [data.newrelic_account.acc.account_id]
 }
 ```
+This will provision New Relic Work Load with the 
+- `name` of "Production-WorkLoad" 
+- `account_id` on the defined account 
+- and `entity_search_query` would be based on environment tags we defined in the implementation of our resources. 
+
 
 You may also want to consider automating this process in your CI/CD pipeline.  Use Terraform's [recommended practices guide](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) to learn more about their recommended workflow and how to evolve your provisioning practices.
