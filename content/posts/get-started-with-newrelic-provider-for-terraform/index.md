@@ -20,6 +20,7 @@ To use this guide, you should have some basic knowledge of both New Relic and Te
 ## Bootstrap Terraform
 
 `mkdir your-project && cd your-project`
+
 `touch main.tf`
 
 Now, let's instruct Terraform to install and use the NewRelic provider by setting the `terraform` and `required_providers` block in `main.tf`
@@ -41,9 +42,9 @@ terraform {
 
 **What is happening here?**
 
-* `required_version` is your Terraform version validation. That ensures your terraform code syntax matches with the installed Terraform version. You can your terraform version with `terraform -v`. 
-* `required_providers`.`source` is the name of NewRelic providers. That brings the new relic provider into terraform to interact with the new relic.
-* `required_providers`.`version` ensures the new relic provider version that you wish to use. 
+* `required_version` is your Terraform version validation. That ensures your terraform code syntax matches with the installed Terraform version. You can check your terraform version with `terraform -v`. 
+* `required_providers.source` is the name of NewRelic providers. That brings the new relic provider into terraform to interact with the new relic.
+* `required_providers.version` ensures the new relic provider version that you wish to use. 
 
 ## Configure New Relic Provider
 
@@ -60,7 +61,7 @@ provider "newrelic" {
 
 * `account_id` - Your New Relic Account ID. Visit to learn more https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id
 * `api_key` - Your Personal New Relic API Key. Visit to learn more https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#user-api-key
-* `region` - Valid regions are the US and EU. Your region is `US` if the page is located at `one.newrelic.com` and `EU` if your account is located at `one.eu.newrelic.com`
+* `region` - Valid regions are the US and EU. Your region is `US` if the New Relic page is located at `one.newrelic.com` and `EU` if your account is located at `one.eu.newrelic.com`
 
 You can also configure the New Relic provider using the environment variable. This is a useful way to set default values instead of hard coding into code and publishing it to the repository. 
 
@@ -75,9 +76,9 @@ The table below shows the available environment variables equivalent to attribut
 With your new relic provider configured, initialize the Terraform:
 `terraform init`
 
-## Data for New Relic
+## Reference your New Relic Application in Terraform
 
-With New Relic provider configured and initialized, you can define various resources for your application. 
+With a New Relic provider configured and initialized, you can define various resources for your application. 
 
 As you will be targeting a specific application. You can use `newrelic_entity` data to fetch information from New Relic to reference in terraform code. 
 
@@ -126,8 +127,6 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 }
 ```
 
-> **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
-
 ## Create a New Relic alert Policy
 
 ```hcl
@@ -135,10 +134,11 @@ resource "newrelic_alert_policy" "golden_signal_policy" {
   name = "Golden Signal - Managed Policy "
 }
 ```
+- `name` is the name of the Alert Policy. 
 
-* `name` is the name of the Alert Policy. 
+> **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
 
-## Define alert conditions
+## Provision alert conditions for defined Alert Policy
 
 Next, add alert conditions for your application based on the four golden signals: latency, traffic, errors, and saturation. Apply these alert conditions to the alert policy you created in the previous step.
 
@@ -212,7 +212,7 @@ resource "newrelic_alert_condition" "response_time_web" {
 }
 ```
 
-## Errors
+### Errors
 
 ```hcl
 # Error percentage
@@ -277,7 +277,12 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
 }
 ```
 
+Currently, I am not able to find a possible way to segregate the alerts based on priority. For Example, send warning notifications to the Slack channel and critical notifications to the email channel. 
+
+One way might be possible to achieve mentioned problem, We can separate alert policies for warning and critical and associate channels according to alert policy. 
+
 ## Browser Dashboard
+We can also provision the New Relic dashboard with `newrelic_one_dashboard`.
 
 ```hcl
 resource "newrelic_one_dashboard" "dashboard_website_performance" {
@@ -307,7 +312,9 @@ widget_markdown {
 }
 ```
 
-### Add appropriate tags
+We are creating "Website Performance" with the example "Unique User Sessions" and the markdown widget. 
+
+and add the appropriate tag(s) to the dashboard:
 
 ```hcl
 resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
@@ -319,7 +326,7 @@ resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
 }
 ```
 
-## Organize New Relic resources in WorkLoad
+## Organize New Relic resources in Work Load
 
 ```hcl
 resource "newrelic_workload" "workload_production" {
