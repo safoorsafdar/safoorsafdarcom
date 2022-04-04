@@ -72,16 +72,14 @@ The table below shows the available environment variables equivalent to attribut
 | api_key          | NEW_RELIC_API_KEY       |
 | region           | NEW_RELIC_REGION        |
 
-
-
 With your new relic provider configured, initialize the Terraform:
 `terraform init`
 
-
 ## Data for New Relic
+
 With New Relic Provider configured and initialized, you can define various resources for your application. 
 
-As you will be targeting to a specific application. You can use `newrelic_entity` data to fetch information from New Relic to reference in terraform code. 
+As you will be targeting a specific application. You can use `newrelic_entity` data to fetch information from New Relic to reference in terraform code. 
 
 ```hcl
 data "newrelic_entity" "app_apm" {
@@ -101,10 +99,12 @@ data "newrelic_account" "acc" {
   account_id = "<your account>"
 }
 ```
-- `newrelic-entity.app_apm` is to fetch information for APM based New Relic Application. 
-- `newrelic-entity.app_browser` is to to fetch information for Browser based New Relic as in my case we have APM and Browser application on New Relic. 
-` `newrelic_account` is to get information about New Relic account so you can reference it in all of available configuration. 
 
+* `newrelic-entity.app_apm` is to fetch information for APM New Relic Application. 
+* `newrelic-entity.app_browser` is to fetch information for Browser New Relic as in my case we have APM and Browser application on New Relic. 
+  `newrelic_account` is to get information about the New Relic account so you can reference it later in your code. 
+
+At this point, you should be able to test your terraform code with a dry run: `terraform plan`, as the response to the `plan` command, you should see Terraform execution plan.
 
 ### Add appropriate Tags to your New Relic Application
 
