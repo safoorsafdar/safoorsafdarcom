@@ -40,9 +40,10 @@ terraform {
 ```
 
 **What is happening here?**
-- `required_version` is your Terraform version validation. That ensure your terraform code syntax matches with the installed Terraform version. You can your terraform version with `terraform -v`. 
-- `required_providers`.`source` is the name of NewRelic providers. That's brings the NewRelic Provider into terrafom to interact with the new relic.
-- `required_providers`.`version` ensure the new relic provider version that you wish to use. 
+
+* `required_version` is your Terraform version validation. That ensures your terraform code syntax matches with the installed Terraform version. You can your terraform version with `terraform -v`. 
+* `required_providers`.`source` is the name of NewRelic providers. That brings the new relic provider into terraform to interact with the new relic.
+* `required_providers`.`version` ensure the new relic provider version that you wish to use. 
 
 ```hcl
 provider "newrelic" {
