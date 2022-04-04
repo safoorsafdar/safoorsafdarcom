@@ -341,3 +341,5 @@ This will provision New Relic Work Load with the
 * and `entity_search_query` would be based on environment tags we defined in the implementation of our resources with `newrelic_entity_tags`. 
 
 You may also want to consider automating this process in your CI/CD pipeline.  Use Terraform's [recommended practices guide](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) to learn more about their recommended workflow and how to evolve your provisioning practices.
+
+Congratulations! You're officially practicing observability-as-code. Review the [New Relic Terraform provider documentation](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs) to learn how you can take your configuration to the next level.
