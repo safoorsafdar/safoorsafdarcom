@@ -7,7 +7,8 @@ tags:
   - newrelic
   - iac
 ---
-## Provider Defination
+## Provider Definition
+
 ```hcl
 terraform {
   required_version = "~> 1.0"
@@ -21,12 +22,13 @@ terraform {
 provider "newrelic" {
   account_id = "<your account>"
   api_key    = "NRAK-<your api key>" # usually prefixed with 'NRAK'
-  region     = "EU"                               # Valid regions are US and EU
+  region     = "EU" # Valid regions are US and EU
 }
-
 ```
 
 ## Data for New Relic
+
+```hcl
 data "newrelic_entity" "app_apm" {
   name   = "<Your APM application Name>" # Must be an exact match to your application name in New Relic
   domain = "APM"        # or BROWSER, INFRA, MOBILE, SYNTH, depending on your entity's domain
@@ -43,9 +45,11 @@ data "newrelic_account" "acc" {
   scope      = "global"
   account_id = "<your account>"
 }
-
+```
 
 ## Add appropriate Tags to your New Relic Application
+
+```hcl
 resource "newrelic_entity_tags" "app_apm_tags" {
   guid = data.newrelic_entity.app_apm.guid
   tag {
@@ -61,9 +65,11 @@ resource "newrelic_entity_tags" "app_browser_tags" {
     values = ["Production"]
   }
 }
+```
 
-## Workload Defination
+## Workload Definition
 
+```hcl
 resource "newrelic_workload" "workload_production" {
   name       = "Production-WorkLoad"
   account_id = data.newrelic_account.acc.account_id
@@ -74,9 +80,11 @@ resource "newrelic_workload" "workload_production" {
 
   scope_account_ids = [data.newrelic_account.acc.account_id]
 }
-
+```
 
 ## Alerts Settings
+
+```hcl
 resource "newrelic_alert_policy" "golden_signal_policy" {
   name = "GoldenSignal-ManagedPolicy"
 }
@@ -90,15 +98,18 @@ resource "newrelic_alert_channel" "team_email" {
     include_json_attachment = "1"
   }
 }
+```
 
 # Slack notification channel
+
+```hcl
 resource "newrelic_alert_channel" "slack_notification" {
   name = "Slack-Notification"
   type = "slack"
 
   config {
     # Use the URL provided in your New Relic Slack integration
-    url     = "Slack Hooks "
+    url     = "<Slack Hooks>"
     channel = "proj-alerts"
   }
 }
@@ -107,37 +118,43 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
   policy_id   = newrelic_alert_policy.golden_signal_policy.id
   channel_ids = [newrelic_alert_channel.team_email.id, newrelic_alert_channel.slack_notification.id]
 }
-
+```
 
 ## Browser App-based Dashboard
 
+```hcl
 resource "newrelic_one_dashboard" "dashboard_website_performance" {
   name = "DCOP-WebsitePerformance"
 
   page {
     name = "Sessions"
 
-    widget_line {
-      title  = "Unique User Sessions"
-      row    = 1
-      column = 1
+widget_line {
+  title  = "Unique User Sessions"
+  row    = 1
+  column = 1
 
-      nrql_query {
-        query = "FROM PageView SELECT uniqueCount(session) WHERE appName='${data.newrelic_entity.app_browser.name}' TIMESERIES"
-      }
-    }
-
-    widget_markdown {
-      title  = "Dashboard Note"
-      row    = 1
-      column = 9
-
-      text = "### Helpful Links\n\n* [New Relic One](https://one.newrelic.com)\n* [Developer Portal](https://developer.newrelic.com)"
-    }
+  nrql_query {
+    query = "FROM PageView SELECT uniqueCount(session) WHERE appName='${data.newrelic_entity.app_browser.name}' TIMESERIES"
   }
 }
 
+widget_markdown {
+  title  = "Dashboard Note"
+  row    = 1
+  column = 9
+
+  text = "### Helpful Links\n\n* [New Relic One](https://one.newrelic.com)\n* [Developer Portal](https://developer.newrelic.com)"
+}
+
+
+  }
+}
+```
+
 ### Add appropriate tags
+
+```hcl
 resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
   guid = newrelic_one_dashboard.dashboard_website_performance.guid
   tag {
@@ -145,10 +162,11 @@ resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
     values = ["Production"]
   }
 }
-
+```
 
 ## Alerts For Traffic
-```
+
+```hcl
 # Low throughput
 resource "newrelic_alert_condition" "throughput_web" {
   policy_id       = newrelic_alert_policy.golden_signal_policy.id
@@ -171,7 +189,8 @@ resource "newrelic_alert_condition" "throughput_web" {
 ```
 
 ## Alerts for Saturation
-```
+
+```hcl
 # High CPU usage
 resource "newrelic_infra_alert_condition" "high_cpu_utils" {
   policy_id   = newrelic_alert_policy.golden_signal_policy.id
@@ -194,7 +213,7 @@ resource "newrelic_infra_alert_condition" "high_cpu_utils" {
 
 ## Alerts for Latency
 
-```
+```hcl
 # Response time
 resource "newrelic_alert_condition" "response_time_web" {
   policy_id       = newrelic_alert_policy.golden_signal_policy.id
@@ -217,7 +236,7 @@ resource "newrelic_alert_condition" "response_time_web" {
 
 ## Alerts for Error
 
-```
+```hcl
 # Error percentage
 resource "newrelic_alert_condition" "error_percentage" {
   policy_id       = newrelic_alert_policy.golden_signal_policy.id
@@ -236,6 +255,4 @@ resource "newrelic_alert_condition" "error_percentage" {
     time_function = "all"
   }
 }
-
 ```
-
