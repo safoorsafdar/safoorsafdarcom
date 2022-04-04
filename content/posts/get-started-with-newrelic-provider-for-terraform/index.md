@@ -19,10 +19,8 @@ To use this guide, you should have some basic knowledge of both New Relic and Te
 
 ## Bootstrap Terraform
 
-```shell
-mkdir your-project && cd your-project
-touch main.tf
-```
+`mkdir your-project && cd your-project`
+`touch main.tf`
 
 Now, let's instruct Terraform to install and use the NewRelic provider by setting the `terraform` and `required_providers` block in `main.tf`
 
