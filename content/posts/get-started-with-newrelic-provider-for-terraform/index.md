@@ -64,14 +64,17 @@ provider "newrelic" {
 
 You can also configure the New Relic provider using the environment variable. This is a useful way to set default values instead of hard coding into code and publishing it to the repository. 
 
-The table below shows the available environment variables equivalent to attributes. 
+The table below shows the available environment variables equivalent to attributes and all of these are required attributes. 
 
-|   |   |
+| Schema Attribute  |  Equivalent Env Variable |
 |---|---|
 |  account_id |  NEW_RELIC_ACCOUNT_ID |
 | api_key  | NEW_RELIC_API_KEY  |
 | region  |  NEW_RELIC_REGION |
 
+
+with the new relic provider configured, initialize the Terraform:
+`terraform init`
 
 
 ## Data for New Relic
