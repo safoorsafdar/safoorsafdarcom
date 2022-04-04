@@ -45,6 +45,10 @@ terraform {
 * `required_providers`.`source` is the name of NewRelic providers. That brings the new relic provider into terraform to interact with the new relic.
 * `required_providers`.`version` ensure the new relic provider version that you wish to use. 
 
+
+
+## Configure New Relic Provider
+
 ```hcl
 provider "newrelic" {
   account_id = "<your account>"
