@@ -239,6 +239,7 @@ resource "newrelic_alert_condition" "error_percentage" {
  
 
 ## Get notified when an alert triggers
+There are multiple ways available from New Relic to get notified when an alert triggers. For starters, we can use Email and Slack notifications. 
 
 ```hcl
 
@@ -264,7 +265,11 @@ resource "newrelic_alert_channel" "slack_notification" {
     channel = "proj-alerts"
   }
 }
+```
+When you define your New Relic channels, you need to associate them with the respective New Relic Alert Policy. 
 
+
+```hcl
 resource "newrelic_alert_policy_channel" "golden_signals" {
   policy_id   = newrelic_alert_policy.golden_signal_policy.id
   channel_ids = [newrelic_alert_channel.team_email.id, newrelic_alert_channel.slack_notification.id]
