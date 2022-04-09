@@ -1,6 +1,6 @@
 ---
 title: Source code continues integration of Mendix application with Gitlab Pipeline
-date: 2022-04-09T23:11:27.005Z
+date: 2022-04-09T23:18:37.801Z
 tags:
   - devops
   - aws
