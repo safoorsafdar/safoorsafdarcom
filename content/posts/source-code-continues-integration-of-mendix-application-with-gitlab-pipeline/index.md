@@ -4,6 +4,8 @@ date: 2022-04-09T23:11:27.005Z
 tags:
   - devops
   - aws
+  - gitlab-pipeline
+  - mendix
 ---
 Mendix is a high productivity low-code collaborative development app platform that enables you to build and continuously improve mobile and web applications at scale.
 
