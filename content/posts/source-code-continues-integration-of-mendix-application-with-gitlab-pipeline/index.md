@@ -1,6 +1,6 @@
 ---
 title: Source code continues integration of Mendix application with Gitlab Pipeline
-date: 2022-04-09T23:18:37.801Z
+date: 2022-04-10T01:05:25.244Z
 tags:
   - devops
   - on-premises
@@ -12,20 +12,20 @@ Mendix is a high productivity low-code collaborative development app platform th
 
 Mendix supports the use of a centralized version control repository based on Subversion (SVN), which is the Mendix Team Server. Every project built using the Mendix Platform comes with the Team Server version control system.
 
-The whole infrastructure technology stack was deployed on-premises, some of them include Kubernetes and Gitlab among others. The aim was to deploy the Mendix application to Kubernetes in CI/CD fashion using the help of Gitlab Pipeline.
+The infrastructure technology stack was deployed on-premises, including Kubernetes and Gitlab as two of its main components. The aim was to deploy the Mendix application to Kubernetes in a continuous integration/continuous delivery fashion using the help of Gitlab Pipeline.
 
-Git is a distributed version control system, whereas SVN is a centralized version control system. There is no suitable way to implement CI/CD in a declarative paradigm to convert SVN to Git.
+Git is a distributed version control system, but Subversion (SVN) is a centralized version control system. Developers may find it difficult to create a Continuous Integration/Continuous Deployment pipeline that converts SVN to Git, as there is no suitable way to implement it in a declarative paradigm.
 
-The requirement was to deploy all of the latest features and changes in SVN for the Mendix application to Kubernetes. But application code should be present in the Gitlab repository so another pipeline process can trigger to make the Mendix application Kubernetes friendly. In other words, prepare a Docker image and publish it to the Docker repository. and deploy the application through Helm chart to respective Kubernetes environments.
+The requirement was to deploy the latest version of the Mendix application to Kubernetes as quickly and seamlessly as possible. To meet this objective, application code should be present in the Gitlab repository so that another pipeline process can modify it to make it Kubernetes-friendly. This involves preparing a Docker image for deployment and publishing it to the Docker repository, and deploying an application through a Helm chart to the Kubernetes environment.
 
-👇 Here are the steps of implement this Pipeline
+👇 Here are the step-by-step process of implementing this pipeline.
 
 * Fetch the changes from Mendix Team Server
 * Clone the counterpart repository from Gitlab
 * Merge the changes from Mendix SVN to the Gitlab repository locally.
 * Publish it to Gitlab's respective repository.
 
-> :rocket: You can find the Gitlab Pipeline code at [Continues integration to move Mendix application to Gitlab Pipeline · GitHub](https://gist.github.com/safoorsafdar/c25505ad69b77f91f6ac90f8b21f44f8)
+> 🚀 You can find the Gitlab Pipeline code at [Continues integration to move Mendix application to Gitlab Pipeline · GitHub](https://gist.github.com/safoorsafdar/c25505ad69b77f91f6ac90f8b21f44f8)
 
 ## Base configuration to start with Gitlab Pipeline
 
@@ -53,10 +53,10 @@ variables:
   SVN_TRUNK_FOLDER: "trunk"
 ```
 
-👆 Above mentioned are some SVN related defined variables to use later in the stage
+👆 Above mentioned are some variables defined for SVN to use later in the stage
 
 * `SVN_SRC_PATH` where SVN trunk will download
-* `SVN_REPO_PATH` complete path to SVN Team Server. That usually starts with `[https://teamserver.sprintr.com/](https://teamserver.sprintr.com/)`.
+* `SVN_REPO_PATH` the complete path to SVN Team Server. That usually starts with `[https://teamserver.sprintr.com/](https://teamserver.sprintr.com/)`.
 * `SVN_USERNAME` User Name to access the Team Server.
 * `SVN_PASSWORD` Password to access the Team Server.
 * `SVN_TRUNK_FOLDER` Folder path on SVN to fetch changes from. Mostly it's the `trunk` folder.
