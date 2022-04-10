@@ -17,7 +17,7 @@ Git is a distributed version control system, whereas SVN is a centralized versio
 
 The requirement was to deploy all of the latest features and changes in SVN for the Mendix application to Kubernetes. But application code should be present in the Gitlab repository so another pipeline process can trigger to make the Mendix application Kubernetes friendly. In other words, prepare a Docker image and publish it to the Docker repository. and deploy the application through Helm chart to respective Kubernetes environments.
 
-:point_down: Here are the steps of implement this Pipeline
+👇 Here are the steps of implement this Pipeline
 
 - Fetch the changes from Mendix Team Server
 - Clone the counterpart repository from Gitlab
@@ -38,7 +38,7 @@ stages:
   - clean
 ```
 
-:point_up_2: `image` is to define docker-in-docker based image to execute Gitlab pipeline stages in. and `stages` is to divide the complete process into multiple steps.
+👆`image` is to define docker-in-docker based image to execute Gitlab pipeline stages in. and `stages` is to divide the complete process into multiple steps.
 
 ## Fetch the changes from Mendix Team Server
 
@@ -52,7 +52,7 @@ variables:
   SVN_TRUNK_FOLDER: "trunk"
 ```
 
-:point_up_2: Above mentioned are some SVN related defined variables to use later in the stage
+👆 Above mentioned are some SVN related defined variables to use later in the stage
 
 - `SVN_SRC_PATH` where SVN trunk will download
 - `SVN_REPO_PATH` complete path to SVN Team Server. That usually starts with `[https://teamserver.sprintr.com/](https://teamserver.sprintr.com/)`.
@@ -60,7 +60,7 @@ variables:
 - `SVN_PASSWORD` Password to access the Team Server.
 - `SVN_TRUNK_FOLDER` Folder path on SVN to fetch changes from. Mostly it's the `trunk` folder.
 
-:ok_hand: Let's define the stage to download code from Team Server
+👌 Let's define the stage to download code from Team Server
 
 ```yaml
 fetch-svn:
@@ -82,7 +82,7 @@ fetch-svn:
     expire_in: 1 day
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 - `image` SVN CLI docker image.
 
@@ -128,7 +128,7 @@ fetch-git:
     - git config user.name "Safoor Safdar"
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 - `image` git client docker-in-docker based image.
 
@@ -187,7 +187,7 @@ pushToGit:
     - git push ${GIT_REPO_HTTP_PATH} ${GIT_REPO_BRANCH}
 ```
 
-:point_up_2:It will commit the changes with a custom commit message and push it to the Gitlab repo. This step is only dependent on the `merge-svn-to-git` stage.
+👆 It will commit the changes with a custom commit message and push it to the Gitlab repo. This step is only dependent on the `merge-svn-to-git` stage.
 
 > :memo: Communication on Gitlab runner should be open to access SVN Team Server and Gitlab.
 
@@ -205,6 +205,6 @@ garbag-collector:
   - rm -rf ./*
 ```
 
-:boom: You may want to create a temp branch during the process after "rsync" the SVN and Git repo, and based on that temp branch anyone can open the PR to follow the proper practices to graduate your changes to the Kubernetes environment.
+💥 You may want to create a temp branch during the process after "rsync" the SVN and Git repo, and based on that temp branch anyone can open the PR to follow the proper practices to graduate your changes to the Kubernetes environment.
 
 You can learn more about the [CI/CD pipelines | GitLab](https://docs.gitlab.com/ee/ci/pipelines/), and Configuring the Docker in Docker [GitLab Runner | GitLab](https://docs.gitlab.com/runner/) and Mendix https://docs.mendix.com/
