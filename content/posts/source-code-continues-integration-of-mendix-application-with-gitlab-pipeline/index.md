@@ -25,7 +25,7 @@ The application code should be present in the Gitlab repository so that another 
 * Merge the changes from Mendix SVN to the Gitlab repository locally.
 * Publish it to Gitlab's respective repository.
 
-> 🚀 You can find the Gitlab Pipeline code at [Continues integration to move Mendix application to Gitlab Pipeline · GitHub](https://gist.github.com/safoorsafdar/c25505ad69b77f91f6ac90f8b21f44f8)
+> 🚀 You can find the Gitlab Pipeline code at [Source code continues integration of Mendix application with Gitlab Pipeline · GitHub](https://gist.github.com/safoorsafdar/c25505ad69b77f91f6ac90f8b21f44f8)
 
 ## Base configuration to start with Gitlab Pipeline
 
