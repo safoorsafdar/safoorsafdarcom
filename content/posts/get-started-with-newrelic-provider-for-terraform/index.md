@@ -130,7 +130,7 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 
 At this point, you should be able to add tags to your application after the command `terraform apply`. 
 
-Now you have basic infrastructure as code for Terraform up and running. Let's provision other available resources to muture our New Relic implementation with the helo if Terraform IAC.
+Now you have basic infrastructure as code for Terraform up and running. Let's provision other available resources to mature our New Relic implementation with the help of Terraform IAC.
 
 ## Create a New Relic alert policy
 
@@ -148,8 +148,6 @@ resource "newrelic_alert_policy" "golden_signal_policy" {
 ## Provision alert conditions for defined Alert Policy
 
 Next, add alert conditions for your application based on the four golden signals: latency, traffic, errors, and saturation. Apply these alert conditions to the alert policy you created in the previous step.
-
-### Traffic
 
 ```hcl
 # Low throughput
@@ -171,11 +169,6 @@ resource "newrelic_alert_condition" "throughput_web" {
     time_function = "all"
   }
 }
-```
-
-### Saturation
-
-```hcl
 # High CPU usage
 resource "newrelic_infra_alert_condition" "high_cpu_utils" {
   policy_id   = newrelic_alert_policy.golden_signal_policy.id
@@ -194,11 +187,6 @@ resource "newrelic_infra_alert_condition" "high_cpu_utils" {
     time_function = "all"
   }
 }
-```
-
-### Latency
-
-```hcl
 # Response time
 resource "newrelic_alert_condition" "response_time_web" {
   policy_id       = newrelic_alert_policy.golden_signal_policy.id
@@ -217,11 +205,7 @@ resource "newrelic_alert_condition" "response_time_web" {
     time_function = "all"
   }
 }
-```
 
-### Errors
-
-```hcl
 # Error percentage
 resource "newrelic_alert_condition" "error_percentage" {
   policy_id       = newrelic_alert_policy.golden_signal_policy.id
