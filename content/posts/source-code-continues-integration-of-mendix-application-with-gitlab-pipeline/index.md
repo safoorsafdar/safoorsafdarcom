@@ -40,8 +40,9 @@ stages:
 ```
 
 👆
-- `image` is to define docker-in-docker based image to execute Gitlab pipeline stages. 
-- and `stages` is to divide the complete process into multiple steps.
+
+* `image` is to define docker-in-docker based image to execute Gitlab pipeline stages. 
+* and `stages` is to divide the complete process into multiple steps.
 
 ## Fetch the changes from Mendix Team Server
 
@@ -132,7 +133,7 @@ fetch-git:
 👆 What is happening here?
 
 * `image` git client docker-in-docker based image.
-* Script to clone the git repository is pretty familiar and it will only download a single branch based on the variable `GIT_REPO_BRANCH`.
+* Script to clone the git repository is pretty straight forward and it will only download a single branch based on the variable `GIT_REPO_BRANCH`.
 
 ## Merge the changes from Mendix Team Server to the Gitlab repository
 
@@ -188,11 +189,11 @@ pushToGit:
 
 👆 It will commit the changes with a custom commit message and push it to the Gitlab repo. This step is only dependent on the `merge-svn-to-git` stage.
 
-> :memo: Communication on Gitlab runner should be open to access SVN Team Server and Gitlab.
+> 📝 Communication on Gitlab runner should be open to access SVN Team Server and Gitlab.
 
 Whenever this pipeline is executed, it should be able to fetch the latest changes from Mendix Team Server and push them to the Gitlab repo.
 
-For the final stage, It can "Clean" the temp directories or docker images from the host.
+For the final stage, You can "Clean" the temp directories or docker images from the Gitlab runner server.
 
 ```yaml
 garbag-collector:
