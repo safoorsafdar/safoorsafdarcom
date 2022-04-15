@@ -229,7 +229,7 @@ resource "newrelic_alert_condition" "error_percentage" {
 
 ## Get notified when an alert triggers
 
-There are multiple ways available from New Relic to get notified when an alert triggers. For starters, we can use Email and Slack notifications. 
+There are multiple ways available from New Relic to get notified when an alert triggers. For starters, you can use Email and Slack notifications. 
 
 ```hcl
 resource "newrelic_alert_channel" "team_email" {
@@ -335,7 +335,7 @@ resource "newrelic_workload" "workload_production" {
 
 * `name` of "Production-WorkLoad" 
 * `account_id` on the defined account 
-* and `entity_search_query` would be based on environment tags we defined in the implementation of our resources with `newrelic_entity_tags`. 
+* and `entity_search_query` would be based on environment tags defined in the implementation of resources with `newrelic_entity_tags`. 
 
 You may also want to consider automating this process in your CI/CD pipeline.  Use Terraform's [recommended practices guide](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) to learn more about their recommended workflow and how to evolve your provisioning practices.
 
