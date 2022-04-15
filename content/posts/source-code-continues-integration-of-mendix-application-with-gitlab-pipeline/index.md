@@ -16,7 +16,7 @@ The infrastructure technology stack was deployed on-premises, including Kubernet
 
 Git is a distributed version control system, but Subversion (SVN) is a centralized version control system. Developers may find it difficult to create a Continuous Integration/Continuous Deployment pipeline that converts SVN to Git, as there is no suitable way to implement it in a declarative paradigm.
 
-The requirement was to deploy the latest version of the Mendix application to Kubernetes as quickly and seamlessly as possible. To meet this objective, application code should be present in the Gitlab repository so that another pipeline process can modify it to make it Kubernetes-friendly. This involves preparing a Docker image for deployment and publishing it to the Docker repository, and deploying an application through a Helm chart to the Kubernetes environment.
+The application code should be present in the Gitlab repository so that another pipeline process can make it Kubernetes-friendly. This involves preparing a Docker image for deployment and publishing it to the Docker repository, and deploying an application through a Helm chart to the Kubernetes environment.
 
 👇 Here are the step-by-step process of implementing this pipeline.
 
@@ -56,7 +56,7 @@ variables:
 👆 Above mentioned are some variables defined for SVN to use later in the stage
 
 * `SVN_SRC_PATH` where SVN trunk will download
-* `SVN_REPO_PATH` the complete path to SVN Team Server. That usually starts with `[https://teamserver.sprintr.com/](https://teamserver.sprintr.com/)`.
+* `SVN_REPO_PATH` is the complete path to SVN Team Server. That usually starts with `[https://teamserver.sprintr.com/](https://teamserver.sprintr.com/)`.
 * `SVN_USERNAME` User Name to access the Team Server.
 * `SVN_PASSWORD` Password to access the Team Server.
 * `SVN_TRUNK_FOLDER` Folder path on SVN to fetch changes from. Mostly it's the `trunk` folder.
