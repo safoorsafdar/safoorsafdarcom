@@ -46,7 +46,7 @@ stages:
 
 ## Fetch the changes from Mendix Team Server
 
-```yaml
+```yaml{3-7}
 # pipeline.yaml
 variables:
   SVN_SRC_PATH: ${CI_BUILDS_DIR}/${CI_PROJECT_PATH}/svnsrc
