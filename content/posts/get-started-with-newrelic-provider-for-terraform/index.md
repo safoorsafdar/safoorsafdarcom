@@ -145,9 +145,10 @@ resource "newrelic_alert_policy" "golden_signal_policy" {
 
 > 💡 **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
 
-## Provision alert conditions for defined Alert Policy
 
-Next, add alert conditions for your application based on the four golden signals: latency, traffic, errors, and saturation. Apply these alert conditions to the alert policy you created in the previous step.
+## Add alert conditions in the alert policy
+
+Let's add alert conditions based on the four golden signals: latency, traffic, errors, and saturation. Apply these alert conditions to the alert policy you created in the previous step.
 
 ```hcl
 # Low throughput
@@ -270,11 +271,11 @@ resource "newrelic_alert_policy_channel" "golden_signals" {
 
 Currently, I am not able to find a possible way to segregate the alerts based on priority. For Example, send warning notifications to the Slack channel and critical notifications to the email channel. 
 
-One possible way could be to separate alert policies for warning and critical and associate channels according to alert policy. 
+One possible way could be to separate alert policies for warning and critical, and associate channels to respective alert policies. 
 
 ## Browser Dashboard
 
-We can also provision the New Relic dashboard with `newrelic_one_dashboard`.
+You can also define the New Relic dashboard with `newrelic_one_dashboard`.
 
 ```hcl
 resource "newrelic_one_dashboard" "dashboard_website_performance" {
@@ -303,8 +304,7 @@ widget_markdown {
   }
 }
 ```
-
-We are creating "Website Performance" with the example "Unique User Sessions" and the markdown widget. 
+👆 is creating "Website Performance" with the example "Unique User Sessions" and the markdown widget. 
 
 and add the appropriate tag(s) to the dashboard:
 
