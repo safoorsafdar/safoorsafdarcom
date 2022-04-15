@@ -304,9 +304,7 @@ widget_markdown {
   }
 }
 ```
-👆 is creating "Website Performance" with the example "Unique User Sessions" and the markdown widget. 
-
-and add the appropriate tag(s) to the dashboard:
+👆 is creating "Website Performance" with the example "Unique User Sessions" and the markdown widget. Add the appropriate tag(s) to the dashboard:
 
 ```hcl
 resource "newrelic_entity_tags" "dashboard_website_performance_tags" {
@@ -333,7 +331,7 @@ resource "newrelic_workload" "workload_production" {
 }
 ```
 
-This will provision New Relic Work Load with the 
+👆 This will provision New Relic Work Load with the 
 
 * `name` of "Production-WorkLoad" 
 * `account_id` on the defined account 
