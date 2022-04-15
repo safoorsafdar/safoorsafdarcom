@@ -39,7 +39,9 @@ stages:
   - clean
 ```
 
-👆`image` is to define docker-in-docker based image to execute Gitlab pipeline stages in. and `stages` is to divide the complete process into multiple steps.
+👆
+- `image` is to define docker-in-docker based image to execute Gitlab pipeline stages. 
+- and `stages` is to divide the complete process into multiple steps.
 
 ## Fetch the changes from Mendix Team Server
 
@@ -202,6 +204,6 @@ garbag-collector:
   - rm -rf ./*
 ```
 
-💥 You may want to create a temp branch during the process after "rsync" the SVN and Gitlab repository, and based on that temp branch anyone can open the PR to follow the proper practices to graduate your changes to the Kubernetes environment.
+💥 You may want to create a temp branch during the process after "rsync" the SVN and Gitlab repository, and based on that temp branch, anyone can open the PR to follow the proper practices to graduate your changes to the Kubernetes environment.
 
 You can learn more about the [CI/CD pipelines | GitLab](https://docs.gitlab.com/ee/ci/pipelines/), and Configuring the Docker in Docker [GitLab Runner | GitLab](https://docs.gitlab.com/runner/) and [Mendix](https://docs.mendix.com/)
