@@ -7,11 +7,11 @@ tags:
   - newrelic
   - iac
 ---
-[Terraform](https://www.terraform.io/) is a popular infrastructure-as-code software tool built by HashiCorp. You can use it to provision all kinds of infrastructure and services, including New Relic dashboards and alerts.
+[Terraform](https://www.terraform.io/) is a popular infrastructure-as-code software tool built by HashiCorp. You can provision all kinds of infrastructure and services, including New Relic dashboards and alerts with the Terraform. 
 
 On the other hand, New Relic is a web application performance service designed to work in real-time with your live web app. 
 
-In this get started guide, you can learn how to set up New Relic. More specifically, you provision an alert policy, alert conditions, alert channels, and Dashboard. 
+In this get started guide, you can learn how to set up New Relic. More specifically, you can provision an alert policy, alert conditions, alert channels, and Dashboard. 
 
 ## Before you begin
 
@@ -40,10 +40,10 @@ terraform {
 }
 ```
 
-**What is happening here?**
+👆What is happening here?
 
-* `required_version` is your Terraform version validation. That ensures your terraform code syntax matches with the installed Terraform version. You can check your terraform version with `terraform -v`. 
-* `required_providers.source` is the name of NewRelic providers. That brings the new relic provider into terraform to interact with the new relic.
+* `required_version` is your Terraform version validation. You can check your terraform version with `terraform -v`. 
+* `required_providers.source` is the name of NewRelic providers. That brings the new relic provider to interact with the new relic using terraform. 
 * `required_providers.version` ensures the new relic provider version that you wish to use. 
 
 ## Configure New Relic Provider
@@ -58,7 +58,9 @@ provider "newrelic" {
 }
  
 ```
-**What is happening here?**
+
+👆What is happening here?
+
 * `account_id` - Your New Relic Account ID. Visit to learn more https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id
 * `api_key` - Your Personal New Relic API Key. Visit to learn more https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#user-api-key
 * `region` - Valid regions are the US and EU. Your region is `US` if the New Relic page is located at `one.newrelic.com` and `EU` if your account is located at `one.eu.newrelic.com`
@@ -73,14 +75,13 @@ The table below shows the available environment variables equivalent to attribut
 | api_key          | NEW_RELIC_API_KEY       |
 | region           | NEW_RELIC_REGION        |
 
-With your new relic provider configured, initialize the Terraform:
-`terraform init`
+With the New Relic provider configured, initialize the Terraform:
+
+👉 `terraform init`
 
 ## Reference your New Relic Application in Terraform
 
-With a New Relic provider configured and initialized, you can define various resources for your application. 
-
-As you will be targeting a specific application. You can use `newrelic_entity` data to fetch information from New Relic to reference in terraform code. 
+You can  define various resources for your application. As you will be targeting a specific application. You can use `newrelic_entity` data to fetch information from New Relic to reference in terraform code. 
 
 ```hcl
 data "newrelic_entity" "app_apm" {
@@ -100,13 +101,14 @@ data "newrelic_account" "acc" {
   account_id = "<your account>"
 }
 ```
-**What is happening here?**
+
+👆What is happening here?
+
 * `newrelic_entity.app_apm` is to fetch information for APM New Relic Application. 
-* `newrelic_entity.app_browser` is to fetch information for Browser New Relic as in my case we have APM and Browser application on New Relic. 
-* `newrelic_account` is to get information about the New Relic account so you can reference it later in your code. 
+* `newrelic_entity.app_browser` is to fetch information for Browser New Relic.
+* `newrelic_account` is to get information about the New Relic account so you can reference it later in your configuration. 
 
-
-It's considered a best practice to tag all your resources on Cloud. Similarly, we can tag our resources on New Relic with `newrelic_entity_tags`. Let's tag our APM and Browser New Relic application. 
+It's considered a best practice to tag all your resources on Cloud. You can tag New Relic resources with `newrelic_entity_tags`. Let's tag our APM and Browser New Relic application. 
 
 ```hcl
 resource "newrelic_entity_tags" "app_apm_tags" {
@@ -128,7 +130,7 @@ resource "newrelic_entity_tags" "app_browser_tags" {
 
 At this point, you should be able to add tags to your application after the command `terraform apply`. 
 
-Now you have basic infrastructure as code for Terraform up and running. Let's provision other available resources to muture our New Relic implementation.
+Now you have basic infrastructure as code for Terraform up and running. Let's provision other available resources to muture our New Relic implementation with the helo if Terraform IAC.
 
 ## Create a New Relic alert policy
 
@@ -137,9 +139,11 @@ resource "newrelic_alert_policy" "golden_signal_policy" {
   name = "Golden Signal - Managed Policy "
 }
 ```
-- `name` is the name of the Alert Policy. 
 
-> **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
+👆
+`name` is the name of the Alert Policy. 
+
+> 💡 **Info!** At this point, you can apply your terraform code with `terraform apply`. Every time you `apply` changes, Terraform asks you to confirm the actions you've told it to run. Type "yes".
 
 ## Provision alert conditions for defined Alert Policy
 
@@ -285,6 +289,7 @@ Currently, I am not able to find a possible way to segregate the alerts based on
 One possible way could be to separate alert policies for warning and critical and associate channels according to alert policy. 
 
 ## Browser Dashboard
+
 We can also provision the New Relic dashboard with `newrelic_one_dashboard`.
 
 ```hcl
