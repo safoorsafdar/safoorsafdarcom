@@ -173,6 +173,12 @@ module.exports = {
     },
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-gatsby-cloud`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/about`, `/experience/`, `/projects`, `/skills`],
+      },
+    },
     shouldAnalyseBundle && {
       resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
       options: {
