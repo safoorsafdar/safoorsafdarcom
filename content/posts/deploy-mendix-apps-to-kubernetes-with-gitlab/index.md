@@ -44,9 +44,9 @@ Mendix build pack will help you to prepare to containerize the version of your a
 
 Let's start building Gitlab Pipeline to deploy the Mendix application to Kubernetes.
 
-> :rocket: You can find the Gitlab Pipeline code at [Deploy Mendix apps to Kubernetes with Gitlab · GitHub](https://gist.github.com/safoorsafdar/c169d5007e1aa88d900ae7198114292f)
+> 🚀  You can find the Gitlab Pipeline code at [Deploy Mendix apps to Kubernetes with Gitlab · GitHub](https://gist.github.com/safoorsafdar/c169d5007e1aa88d900ae7198114292f)
 
-Base configuration to start with Pipeline...
+👇 Base configuration to start with Pipeline...
 
 ```yaml
 image: alpine
