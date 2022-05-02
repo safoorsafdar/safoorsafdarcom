@@ -26,16 +26,15 @@ Development, staging, and production environments were provisioned using Kubespr
 
 **You are going to implement...**
 
-This post covers the implementation of Gitlab Pipeline to deploy a Mendix application to Kubernetes. The following steps will be covered:
+👇 This post covers the implementation of Gitlab Pipeline to deploy a Mendix application to Kubernetes. The following steps will be covered:
 
-- Containerize the Mendix application with Docker
-- Build the Docker image from the source code
-- Publish the Docker Image to Docker Registry
-- Define the Mendix application deployment template
-- Deploy to Development and Staging Environment
-- Deploy to Production
-- Clean the local Docker images
-  
+* Containerize the Mendix application with Docker
+* Build the Docker image from the source code
+* Publish the Docker Image to Docker Registry
+* Define the Mendix application deployment template
+* Deploy to Development and Staging Environment
+* Deploy to Production
+* Clean the local Docker images
 
 ## Containerize the Mendix application with Docker
 
@@ -79,27 +78,17 @@ variables:
 
 :point_up_2: What are these variables?
 
-- `MENDIX_BUILD_PATH` Mendix application source code path on the Gitlab Runner server.
-  
-- `MENDIX_BUILDPACK_VERSION` is the version of the Mendix Build pack.
-  
-- `REGISTRY_IP` contains the IP of Docker Registry to access it from the Gitlab Runner server.
-  
-- `CONTAINER_*` are the supported variables to name the docker image.
-  
-- `CI_PROJECT_PATH` is a predefined variable from Gitlab that provides the project namespace with the project name.
-  
-- `CI_BUILD_REF_NAME` is to get the current build ref name. 
+* `MENDIX_BUILD_PATH` Mendix application source code path on the Gitlab Runner server.
+* `MENDIX_BUILDPACK_VERSION` is the version of the Mendix Build pack.
+* `REGISTRY_IP` contains the IP of Docker Registry to access it from the Gitlab Runner server.
+* `CONTAINER_*` are the supported variables to name the docker image.
+* `CI_PROJECT_PATH` is a predefined variable from Gitlab that provides the project namespace with the project name.
+* `CI_BUILD_REF_NAME` is to get the current build ref name. 
   *Note: This variable does not exist anymore. Review Gitlab Predefined Variables.*
-  
-- `CI_COMMIT_SHORT_SHA` is the first eight characters of the commit SHA `CI_COMMIT_SHA` variable.
-  
-- `KUBECONFIG` is the Kubernetes config file path to store the Kubernetes configuration.
-  
-- `DEV_NS`, `STG_NS`, and `PRD_NS` are the Kubernetes namespace names.
-  
-- `CHART_PATH` is the path of the Helm chart on the Gitlab runner server.
-  
+* `CI_COMMIT_SHORT_SHA` is the first eight characters of the commit SHA `CI_COMMIT_SHA` variable.
+* `KUBECONFIG` is the Kubernetes config file path to store the Kubernetes configuration.
+* `DEV_NS`, `STG_NS`, and `PRD_NS` are the Kubernetes namespace names.
+* `CHART_PATH` is the path of the Helm chart on the Gitlab runner server.
 
 ## Build the Docker image from source code
 
@@ -126,12 +115,10 @@ build:
 
 :point_up_2: What is happening here?
 
-- This stage will only execute for `master` and `develop` branches of the repository.
-- `services` is to bind base docker image for docker-in-docker execution, it will execute script in `image: docker:19.03.1` docker image. 
-- It will prepare the build of source code with `docker build` and then tag it with `docker tag` command. You can find more documentation on `docker build` command on the Mendix Build pack.
-  
-- `DOCKER_TLS_CERTDIR` is to let docker-in-docker communicate over TLS with host docker.
-  
+* This stage will only execute for `master` and `develop` branches of the repository.
+* `services` is to bind base docker image for docker-in-docker execution, it will execute script in `image: docker:19.03.1` docker image. 
+* It will prepare the build of source code with `docker build` and then tag it with `docker tag` command. You can find more documentation on `docker build` command on the Mendix Build pack.
+* `DOCKER_TLS_CERTDIR` is to let docker-in-docker communicate over TLS with host docker.
 
 ## Publish the Docker Image to Docker Registry
 
@@ -159,10 +146,9 @@ publish:
 
 :point_up_2: What is happening here?
 
-- It will push the build docker image to the Docker registry.
-- It will try to run the same stage twice if some error occurs during the execution to push the Docker image to the Docker registry. 
-- Docker registry was deployed on on-premises infrastructure to communicate over the IP instead of DNS. SSL/HTTPS certificate was not provisioned for secure communication. `before_script` will automatically add `$REGISTRY_IP` to insecure communication for Docker with Docker registry on Gitlab Runner server.
-  
+* It will push the build docker image to the Docker registry.
+* It will try to run the same stage twice if some error occurs during the execution to push the Docker image to the Docker registry. 
+* Docker registry was deployed on on-premises infrastructure to communicate over the IP instead of DNS. SSL/HTTPS certificate was not provisioned for secure communication. `before_script` will automatically add `$REGISTRY_IP` to insecure communication for Docker with Docker registry on Gitlab Runner server.
 
 ## Define the Mendix application deployment template
 
@@ -188,8 +174,8 @@ publish:
 
 :point_up_2: What is happening here?
 
-- At the time of implementation, Helm 2 version was used. 
-- It will save the Kubernetes config data from the `${KUBECONFIG_DATA}` to the `${KUBECONFIG}` path.
-- `helm init` will initialize the Helm client with the Kubernetes cluster. This command assumes Helm V2 has been configured on the Kubernetes cluster. So, it will only configure `--client-only` Helm Client on the Gitlab runner server.
-- As a core part of the implementation for this stage, You will be updating the Helm chart release on Kubernetes or creating a new release for your Helm chart.
-- `script` get's the Helm chart version and checks if it is already deployed on the Kubernetes cluster. If not, it will install the Helm chart on Kubernetes.
+* At the time of implementation, Helm 2 version was used. 
+* It will save the Kubernetes config data from the `${KUBECONFIG_DATA}` to the `${KUBECONFIG}` path.
+* `helm init` will initialize the Helm client with the Kubernetes cluster. This command assumes Helm V2 has been configured on the Kubernetes cluster. So, it will only configure `--client-only` Helm Client on the Gitlab runner server.
+* As a core part of the implementation for this stage, You will be updating the Helm chart release on Kubernetes or creating a new release for your Helm chart.
+* `script` get's the Helm chart version and checks if it is already deployed on the Kubernetes cluster. If not, it will install the Helm chart on Kubernetes.
