@@ -30,8 +30,8 @@ Development, staging, and production environments were provisioned using Kubespr
 * Build the Docker image from the source code
 * Publish the Docker Image to Docker Registry
 * Define the Mendix application deployment template
-* Deploy to Development and Staging Environment
-* Deploy to Production
+* Deploy the application to the development and staging environment
+* Deploy the application to the production environment
 * Clean the local Docker images
 
 ## Containerize the Mendix application with Docker
