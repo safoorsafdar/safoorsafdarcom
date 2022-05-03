@@ -22,8 +22,6 @@ Development, staging, and production environments were provisioned using Kubespr
 
 > :bulb: **Info!** Kubespray is a composition of Ansible playbooks, inventory, provisioning tools, and domain knowledge for generic OS/Kubernetes clusters configuration management tasks. Kubespray provides a highly available cluster. composable attributes. support for most popular Linux distributions.
 
-<mark>Give some detail about mendix sample helm chart.</mark>
-
 **You are going to implement...**
 
 👇 This post covers the implementation of Gitlab Pipeline to deploy a Mendix application to Kubernetes. The following steps will be covered:
@@ -40,7 +38,7 @@ Development, staging, and production environments were provisioned using Kubespr
 
 The Mendix build pack for docker provided a standard way to build and run your Mendix application in a Docker container. You can learn more about the build pack at [GitHub - mendix/docker-mendix-buildpack: Build and Run Mendix in Docker](https://github.com/mendix/docker-mendix-buildpack)
 
-Mendix build pack will help you to prepare to containerize the version of your application. It can be part of your source code from start on Team Server or you can merge required docker files later in the process. In this post, let's assume this part is already implemented.
+Mendix Build pack will help you to prepare to containerize the version of your application. It can be part of your source code from start on Team Server or you can merge required docker files later in the process. In this post, let's assume this part is already implemented.
 
 Let's start building Gitlab Pipeline to deploy the Mendix application to Kubernetes.
 
@@ -57,7 +55,7 @@ stages:
   - clean
 ```
 
-:point_up_2: `image` is to define docker-in-docker based image to execute Gitlab pipeline stages in. and `stages` is to divide the complete process into multiple steps.
+👆 `image` is to define docker-in-docker based image to execute Gitlab pipeline stages in. and `stages` is to divide the complete process into multiple steps.
 
 and custom CI/CD variables to use later in pipeline implementation.
 
@@ -76,7 +74,7 @@ variables:
   CHART_PATH: mxchart
 ```
 
-:point_up_2: What are these variables?
+👆 What are these variables?
 
 * `MENDIX_BUILD_PATH` Mendix application source code path on the Gitlab Runner server.
 * `MENDIX_BUILDPACK_VERSION` is the version of the Mendix Build pack.
@@ -90,7 +88,7 @@ variables:
 * `DEV_NS`, `STG_NS`, and `PRD_NS` are the Kubernetes namespace names.
 * `CHART_PATH` is the path of the Helm chart on the Gitlab runner server.
 
-## Build the Docker image from source code
+## Build the Docker image from the source code
 
 ```yaml
 # Build Stage to build Mendix application docker image
@@ -113,11 +111,11 @@ build:
     - docker tag ${CONTAINER_IMAGE_NAME}:${CONTAINER_IMAGE_TAG} ${CONTAINER_IMAGE_NAME}:latest
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 * This stage will only execute for `master` and `develop` branches of the repository.
 * `services` is to bind base docker image for docker-in-docker execution, it will execute script in `image: docker:19.03.1` docker image. 
-* It will prepare the build of source code with `docker build` and then tag it with `docker tag` command. You can find more documentation on `docker build` command on the Mendix Build pack.
+* It will prepare the build of the source code using `docker build` command and then tag it with `docker tag` command. You can find more documentation on `docker build` command on the Mendix Build pack.
 * `DOCKER_TLS_CERTDIR` is to let docker-in-docker communicate over TLS with host docker.
 
 ## Publish the Docker Image to Docker Registry
@@ -144,7 +142,7 @@ publish:
   allow_failure: true
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 * It will push the build docker image to the Docker registry.
 * It will try to run the same stage twice if some error occurs during the execution to push the Docker image to the Docker registry. 
@@ -172,10 +170,10 @@ publish:
     - if [ ${DEPLOYS} -eq 0 ]; then helm install ${CHART_PATH} --namespace=${NAMESPACE} --name=${RELEASE_NAME} --set nameOverride=${APP_NAME} --set image.repository=${CONTAINER_IMAGE_NAME} --set image.tag=${CONTAINER_IMAGE_TAG} --set ENV_LICENSE_ID=${ENV_LICENSE_ID} --set ENV_LICENSE_KEY=${ENV_LICENSE_KEY} --set ingress.annotations."nginx\.ingress\.kubernetes\.io/session-cookie-path"=${EP_PATH} --set ingress.paths[0]=${EP_PATH} --set ingress.hosts[0]=${EP_HOST} --set ENV_ADMIN_PASSWORD=${ADMIN_PASSWORD} --set ENV_MXRUNTIME_DATABASETYPE=${MXRUNTIME_DATABASETYPE} --set ENV_MXRUNTIME_DATABASEJDBCURL=${MXRUNTIME_DATABASEJDBCURL} --set ENV_MXRUNTIME_DATABASEUSERNAME=${MXRUNTIME_DATABASEUSERNAME} --set ENV_MXRUNTIME_DATABASEPASSWORD=${MXRUNTIME_DATABASEPASSWORD}; else echo "verion found; upgrading"; helm upgrade ${RELEASE_NAME} ${CHART_PATH} --namespace=${NAMESPACE} --set image.repository=${CONTAINER_IMAGE_NAME} --set image.tag=${CONTAINER_IMAGE_TAG} --set ingress.annotations."nginx\.ingress\.kubernetes\.io/session-cookie-path"=${EP_PATH} --set ingress.paths[0]=${EP_PATH} --set ingress.hosts[0]=${EP_HOST}; fi
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 * At the time of implementation, Helm 2 version was used. 
 * It will save the Kubernetes config data from the `${KUBECONFIG_DATA}` to the `${KUBECONFIG}` path.
 * `helm init` will initialize the Helm client with the Kubernetes cluster. This command assumes Helm V2 has been configured on the Kubernetes cluster. So, it will only configure `--client-only` Helm Client on the Gitlab runner server.
 * As a core part of the implementation for this stage, You will be updating the Helm chart release on Kubernetes or creating a new release for your Helm chart.
-* `script` get's the Helm chart version and checks if it is already deployed on the Kubernetes cluster. If not, it will install the Helm chart on Kubernetes.
+* `script` get's the Helm chart version and check if it is already deployed on the Kubernetes cluster. If not, it will install the Helm chart on Kubernetes.
