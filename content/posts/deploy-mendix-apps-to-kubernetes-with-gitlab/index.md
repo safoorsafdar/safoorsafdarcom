@@ -1,6 +1,6 @@
 ---
 title: Deploy Mendix apps to Kubernetes with Gitlab
-date: 2022-05-02T23:20:57.708Z
+date: 2022-05-04T03:24:44.805Z
 tags:
   - devops
   - on-premises
@@ -8,8 +8,6 @@ tags:
   - mendix
   - process-automation
 ---
-# Deploy Mendix apps to Kubernetes with Gitlab
-
 In this post, You can learn the process to deploy the Mendix application to the Kubernetes cluster with the Gitlab Pipeline. It will implement a pipeline stage to build and deploy the application.
 
 This is the second post in a series that automates the deployment of Mendix applications using Gitlab. In the first post, the Gitlab pipeline was implemented to move code from the Team server to a Gitlab repository.
@@ -26,7 +24,7 @@ Development, staging, and production environments were provisioned using Kubespr
 
 **You are going to implement...**
 
-This post covers the implementation of Gitlab Pipeline to deploy the Mendix application to Kubernetes. The following steps will be covered:
+👇 This post covers the implementation of Gitlab Pipeline to deploy the Mendix application to Kubernetes. The following steps will be covered:
 
 - Containerize the Mendix application with Docker
 - Build the Docker image from the source code
@@ -45,7 +43,7 @@ Mendix Build pack is a tool to prepare a containerized version of your applicati
 
 Let's start building Gitlab Pipeline to deploy the Mendix application to Kubernetes.
 
-> :rocket: You can find the Gitlab Pipeline code at [Deploy Mendix apps to Kubernetes with Gitlab · GitHub](https://gist.github.com/safoorsafdar/c169d5007e1aa88d900ae7198114292f)
+> 🚀 You can find the Gitlab Pipeline code at [Deploy Mendix apps to Kubernetes with Gitlab · GitHub](https://gist.github.com/safoorsafdar/c169d5007e1aa88d900ae7198114292f)
 
 Base configuration to start with Pipeline...
 
@@ -58,7 +56,7 @@ stages:
   - clean
 ```
 
-:point_up_2: `image` is to define docker-in-docker based image to execute Gitlab pipeline stages in. and `stages` is to divide the complete process into multiple steps.
+👆 `image` is to define docker-in-docker based image to execute Gitlab pipeline stages in. and `stages` is to divide the complete process into multiple steps.
 
 and custom CI/CD variables to use later in pipeline implementation.
 
@@ -77,7 +75,7 @@ variables:
   CHART_PATH: mxchart
 ```
 
-:point_up_2: What are these variables?
+👆 What are these variables?
 
 - `MENDIX_BUILD_PATH` Mendix application source code path on the Gitlab Runner server.
 - `MENDIX_BUILDPACK_VERSION` is the version of the Mendix Build pack.
@@ -115,7 +113,7 @@ build:
     - docker tag ${CONTAINER_IMAGE_NAME}:${CONTAINER_IMAGE_TAG} ${CONTAINER_IMAGE_NAME}:latest
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 - This stage will only execute for the `master` and `develop` branches of the repository.
 - `services` is to bind base docker image for docker-in-docker execution, it will execute script in `image: docker:19.03.1` docker image.
@@ -147,7 +145,7 @@ publish:
   allow_failure: true
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 - It will push the build docker image to the Docker registry.
 - It will try to run the same stage twice if some error occurs during the execution to push the Docker image to the Docker registry.
@@ -176,7 +174,7 @@ publish:
     - if [ ${DEPLOYS} -eq 0 ]; then helm install ${CHART_PATH} --namespace=${NAMESPACE} --name=${RELEASE_NAME} --set nameOverride=${APP_NAME} --set image.repository=${CONTAINER_IMAGE_NAME} --set image.tag=${CONTAINER_IMAGE_TAG} --set ENV_LICENSE_ID=${ENV_LICENSE_ID} --set ENV_LICENSE_KEY=${ENV_LICENSE_KEY} --set ingress.annotations."nginx\.ingress\.kubernetes\.io/session-cookie-path"=${EP_PATH} --set ingress.paths[0]=${EP_PATH} --set ingress.hosts[0]=${EP_HOST} --set ENV_ADMIN_PASSWORD=${ADMIN_PASSWORD} --set ENV_MXRUNTIME_DATABASETYPE=${MXRUNTIME_DATABASETYPE} --set ENV_MXRUNTIME_DATABASEJDBCURL=${MXRUNTIME_DATABASEJDBCURL} --set ENV_MXRUNTIME_DATABASEUSERNAME=${MXRUNTIME_DATABASEUSERNAME} --set ENV_MXRUNTIME_DATABASEPASSWORD=${MXRUNTIME_DATABASEPASSWORD}; else echo "verion found; upgrading"; helm upgrade ${RELEASE_NAME} ${CHART_PATH} --namespace=${NAMESPACE} --set image.repository=${CONTAINER_IMAGE_NAME} --set image.tag=${CONTAINER_IMAGE_TAG} --set ingress.annotations."nginx\.ingress\.kubernetes\.io/session-cookie-path"=${EP_PATH} --set ingress.paths[0]=${EP_PATH} --set ingress.hosts[0]=${EP_HOST}; fi
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 - At the time of implementation, Helm 2 version was used.
 - It will save the Kubernetes config data from the `${KUBECONFIG_DATA}` to the `${KUBECONFIG}` path.
@@ -185,7 +183,7 @@ publish:
 - `script` get's the Helm chart version and checks if it is already deployed on the Kubernetes cluster. If not, it will install the Helm chart on Kubernetes.
   
 
-This post does not cover the implementation of the Helm chart, you can review my sample helm chart derived from the production-ready Helm chart at [Example Helm chart for the Mendix application · GitHub](https://gist.github.com/safoorsafdar/5e14a62729e02666c8bf31a2fecfebc7)
+> 📝 Note! This post does not cover the implementation of the Helm chart, you can review my sample helm chart derived from the production-ready Helm chart at [Example Helm chart for the Mendix application · GitHub](https://gist.github.com/safoorsafdar/5e14a62729e02666c8bf31a2fecfebc7)
 
 ## Deploy the application to the development and staging environment
 
@@ -233,7 +231,7 @@ deployToStg:
     url: https://${STG_EP_HOST}/${STG_EP_PATH}
 ```
 
-:point_up_2: What is happening here?
+👆 What is happening here?
 
 - It will deploy a containerized application to the development and staging environment whenever new changes are pushed to the `develop` or `master` branch respectively.
 - During the execution of the stage, it will set environment variables for Database credentials of the Mendix application, Kubernetes namespace, and Kubernetes config file data.
@@ -264,7 +262,7 @@ deployToPrd:
     url: https://${PRD_EP_HOST}/${PRD_EP_PATH}
 ```
 
-:point_up_2:
+👆
 
 - This stage will only trigger when a new branch is pushed with `release/*`. Example branch name `release/1.0.0-alpha_05_202205`
 - `release/*` is derived from the `master` branch to deploy to the `production` environment.
@@ -298,4 +296,4 @@ At the end of the execution of the Gitlab pipeline to deploy the Mendix applicat
 
 The Best practice is to test individual stages manually before automating them in the pipeline.
 
-Congratulations! You have an automated CI/CD Gitlab pipeline to deploy the Mendix application to the Kubernetes cluster.
+💥 Congratulations! You have an automated CI/CD Gitlab pipeline to deploy the Mendix application to the Kubernetes cluster.
