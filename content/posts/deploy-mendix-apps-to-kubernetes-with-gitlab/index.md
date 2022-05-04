@@ -284,16 +284,14 @@ deleteCommitImage:
     - docker rmi ${CONTAINER_IMAGE_NAME}:${CONTAINER_IMAGE_TAG} ${CONTAINER_IMAGE_NAME}:latest
 ```
 
-At the end of pipeline execution, this stage will remove junk by removing the Docker image from the Gitlab runner server.
+This stage will remove junk by removing the Docker image from the Gitlab runner server.
 
 **Few areas to optimize...**
 
-- The Helm repository was not implemented, so there was no way of versioning the Helm Chart at the time of implementation. And placed on Gitlab Runner without having a mechanism to fetch the latest from the Git repository. So, it's more of a toil to update files on the Gitlab runner server whenever changes happen in the Helm chart.
+- The Helm repository was not implemented. Helm chart code placed on Gitlab runner server without having a mechanism to fetch the latest from the Git repository. So, it's toil to update the chart on the Gitlab runner server whenever changes happen in the Helm chart.
 - Docker registry server should have a DNS name to allow secure communication over SSL.
-- Every commit in the repository for branch `develop`, `master`, and `release/*` will trigger a Docker image build. And at the end of the stage, the pipeline will also remove the respective Docker build image. It's an overkill use of building resources across the environment & waste of time.
+- Commit to `develop`, `master`, and `release/*` in the repository will trigger a Docker image build. And at the end of the stage, the pipeline will also remove the respective Docker build image. It's an overkill use of building resources across the environment & waste of time. It should not trigger every time in the higher environment.
 
-At the end of the execution of the Gitlab pipeline to deploy the Mendix application, you should have your application up and running in your Kubernetes cluster. Considering, the application configuration, docker build, and Helm chart is tested before.
+At this stage, you should have your application up and running in your Kubernetes cluster. The best practice is to test each stage before automating them in the pipeline. Test your application configuration, docker build, and Helm chart.
 
-The Best practice is to test individual stages manually before automating them in the pipeline.
-
-💥 Congratulations! You have an automated CI/CD Gitlab pipeline to deploy the Mendix application to the Kubernetes cluster.
+💥 Congratulations! You have an automated implementation as code for CI/CD Gitlab pipeline. And it will deploy the Mendix application to the Kubernetes cluster.
