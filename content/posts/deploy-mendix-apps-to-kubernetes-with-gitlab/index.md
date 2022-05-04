@@ -22,24 +22,18 @@ Mendix is a low code collaborative development platform for mobile and web appli
 
 Development, staging, and production environments were provisioned using Kubespray as on-premises infrastructure and the Docker Registry to store Docker images for all mentioned environments.
 
-> :bulb: **Info!** Kubespray is a composition of Ansible playbooks, inventory, provisioning tools, and domain knowledge for generic OS/Kubernetes clusters configuration management tasks. Kubespray provides: a highly available cluster. composable attributes. support for most popular Linux distributions.
+> :bulb: **Info!** Kubespray is a composition of Ansible playbooks, inventory, provisioning tools, and domain knowledge for generic OS/Kubernetes clusters configuration management tasks. Kubespray provides a highly available cluster. composable attributes. support for most popular Linux distributions.
 
 **You are going to implement...**
 
-This post covers the implementation of Gitlab Pipeline to deploy an Mendix application to Kubernetes. The following steps will be covered:
+This post covers the implementation of Gitlab Pipeline to deploy the Mendix application to Kubernetes. The following steps will be covered:
 
 - Containerize the Mendix application with Docker
-  
-- Build the Docker image from source code
-  
+- Build the Docker image from the source code
 - Publish the Docker Image to Docker Registry
-  
 - Define the Mendix application deployment template
-  
 - Deploy the application to the development and staging environment
-  
 - Deploy the application to the production environment
-  
 - Clean the local Docker images
   
 
@@ -47,9 +41,9 @@ This post covers the implementation of Gitlab Pipeline to deploy an Mendix appli
 
 The Mendix build pack for docker provided a standard way to build and run your Mendix application in a Docker container. You can learn more about the build pack at [GitHub - mendix/docker-mendix-buildpack: Build and Run Mendix in Docker](https://github.com/mendix/docker-mendix-buildpack)
 
-Mendix build pack will help you to prepare containerize version of your application. It can be part of your source code from start on Team Server or you can merge required docker files later in the process. In this post, let assume this part is already implemented.
+Mendix Build pack is a tool to prepare a containerized version of your application. It can be part of your source code from start on Team Server or you can merge required docker files later in the process.
 
-Lets start building Gitlab Pipeline to deploy Mendix application to Kubernetes.
+Let's start building Gitlab Pipeline to deploy the Mendix application to Kubernetes.
 
 > :rocket: You can find the Gitlab Pipeline code at [Deploy Mendix apps to Kubernetes with Gitlab · GitHub](https://gist.github.com/safoorsafdar/c169d5007e1aa88d900ae7198114292f)
 
@@ -86,25 +80,16 @@ variables:
 :point_up_2: What are these variables?
 
 - `MENDIX_BUILD_PATH` Mendix application source code path on the Gitlab Runner server.
-  
-- `MENDIX_BUILDPACK_VERSION` is the version of Mendix Build pack.
-  
-- `REGISTRY_IP` contain the IP of Docker Registry to access it from Gitlab Runner server.
-  
+- `MENDIX_BUILDPACK_VERSION` is the version of the Mendix Build pack.
+- `REGISTRY_IP` is the IP of Docker Registry to access it from Gitlab Runner server.
 - `CONTAINER_*` are the supported variables to name the docker image.
-  
-- `CI_PROJECT_PATH` is predefined variable from Gitlab that provides project namespace with the project name.
-  
-- `CI_BUILD_REF_NAME` is to get current build ref name. 
-  *Note: This variable does not exist anymore. Review Gitlab Predefined Variables.*
-  
-- `CI_COMMIT_SHORT_SHA` is the first eight characters of commit SHA `CI_COMMIT_SHA` variable.
-  
+- `CI_PROJECT_PATH` is a predefined variable from Gitlab that provides the project namespace with the project name.
+- `CI_BUILD_REF_NAME` is to get the current build reference name. 
+  *Note: This variable does not exist anymore. Review Gitlab Predefined Variables.* 
+- `CI_COMMIT_SHORT_SHA` is the first eight characters of the commit SHA `CI_COMMIT_SHA` variable.
 - `KUBECONFIG` is the Kubernetes config file path to store the Kubernetes configuration.
-  
 - `DEV_NS`, `STG_NS`, and `PRD_NS` are the Kubernetes namespace names.
-  
-- `CHART_PATH` is the path of Helm chart on the Gitlab runner server.
+- `CHART_PATH` is the path of the Helm chart on the Gitlab runner server.
   
 
 ## Build the Docker image from source code
