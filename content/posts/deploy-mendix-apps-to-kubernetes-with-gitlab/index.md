@@ -288,7 +288,7 @@ At the end of pipeline execution, this stage will remove junk by removing the Do
 
 **Few areas to optimize...**
 
-- The Helm repository was not implemented, so there was no way of versioning the Helm Chart at the time of implementation. And placed on Gitlab Runner without having a mechanism to fetch the latest from the Git repository. So, it's more of a toil to update files on Runner whenever changes happen in the Helm chart.
+- The Helm repository was not implemented, so there was no way of versioning the Helm Chart at the time of implementation. And placed on Gitlab Runner without having a mechanism to fetch the latest from the Git repository. So, it's more of a toil to update files on the Gitlab runner server whenever changes happen in the Helm chart.
 - Docker registry server should have a DNS name to allow secure communication over SSL.
 - Every commit in the repository for branch `develop`, `master`, and `release/*` will trigger a Docker image build. And at the end of the stage, the pipeline will also remove the respective Docker build image. It's an overkill use of building resources across the environment & waste of time.
 
