@@ -92,7 +92,7 @@ variables:
 - `CHART_PATH` is the path of the Helm chart on the Gitlab runner server.
   
 
-## Build the Docker image from source code
+## Build the Docker image from the source code
 
 ```yaml
 # Build Stage to build Mendix application docker image
@@ -108,7 +108,7 @@ build:
     - master
   before_script:
     - docker info --format '{{json .}}'
-    - echo ${CONTAINER_IMAGE} # just to make sure variable are populating
+    - echo ${CONTAINER_IMAGE} # just to make sure variables are populating
     - echo ${CONTAINER_IMAGE_LATEST}
   script:
     - docker build --build-arg BUILD_PATH=$MENDIX_BUILD_PATH --build-arg CF_BUILDPACK=$MENDIX_BUILDPACK_VERSION -t ${CONTAINER_IMAGE_NAME}:${CONTAINER_IMAGE_TAG} .
@@ -117,19 +117,16 @@ build:
 
 :point_up_2: What is happening here?
 
-- This stage will only execute for `master` and `develop` branch of the repository.
-  
+- This stage will only execute for the `master` and `develop` branches of the repository.
 - `services` is to bind base docker image for docker-in-docker execution, it will execute script in `image: docker:19.03.1` docker image.
-  
-- It will prepare the build of source code with `docker build` and then tag it with `docker tag` command. You can find more documentation on `docker build` command on the Mendix Build pack.
-  
-- `DOCKER_TLS_CERTDIR` is to let docker-in-docker to communicate over TLS with host docker.
+- It will prepare the build of source code with `docker build` and then tag it with the `docker tag` command. You can find more documentation on the `docker build` command on the Mendix Build pack.
+- `DOCKER_TLS_CERTDIR` is to let docker-in-docker communicate over TLS with host docker.
   
 
 ## Publish the Docker Image to Docker Registry
 
 ```yaml
-# Publish the build docker image to docker repository
+# Publish the build docker image to the docker repository
 publish:
   stage: publish
   image: docker:19.03.1
@@ -152,10 +149,8 @@ publish:
 
 :point_up_2: What is happening here?
 
-- It will push build docker image to docker registry.
-  
-- It will try to run same stage twice, if some error occur during the execution to push Docker image to Docker registry.
-  
+- It will push the build docker image to the Docker registry.
+- It will try to run the same stage twice if some error occurs during the execution to push the Docker image to the Docker registry.
 - Docker registry was deployed on on-premises infrastructure to communicate over the IP instead of DNS. SSL/HTTPS certificate was not provisioned for secure communication. `before_script` will automatically add `$REGISTRY_IP` to insecure communication for Docker with Docker registry on Gitlab Runner server.
   
 
@@ -184,17 +179,13 @@ publish:
 :point_up_2: What is happening here?
 
 - At the time of implementation, Helm 2 version was used.
-  
-- It will save the Kubernetes config data from `${KUBECONFIG_DATA}` to `${KUBECONFIG}` path.
-  
-- `helm init` will initialize the Helm client with Kubernetes cluster. This command assume Helm V2 has been configured on the Kubernetes cluster. So, it will only configure `--client-only` Helm Client on the Gitlab runner server.
-  
-- As core part of the implementation for this stage, You will be updating Helm chart release on Kubernetes or creating new release for your Helm chart.
-  
-- `script` get's the Helm chart version and check if it already deployed on Kubernetes cluster. If not, it will install Helm chart on Kubernetes.
+- It will save the Kubernetes config data from the `${KUBECONFIG_DATA}` to the `${KUBECONFIG}` path.
+- `helm init` will initialize the Helm client with the Kubernetes cluster. This command assumes Helm V2 has been configured on the Kubernetes cluster. So, it will only configure `--client-only` Helm Client on the Gitlab runner server.
+- As a core part of the implementation for this stage, You will be updating the Helm chart release on Kubernetes or creating a new release for your Helm chart.
+- `script` get's the Helm chart version and checks if it is already deployed on the Kubernetes cluster. If not, it will install the Helm chart on Kubernetes.
   
 
-This post does not cover the implementation of Helm chart, you can review my sample helm chart derived from the production ready Helm chart at [Example Helm chart for the Mendix application · GitHub](https://gist.github.com/safoorsafdar/5e14a62729e02666c8bf31a2fecfebc7)
+This post does not cover the implementation of the Helm chart, you can review my sample helm chart derived from the production-ready Helm chart at [Example Helm chart for the Mendix application · GitHub](https://gist.github.com/safoorsafdar/5e14a62729e02666c8bf31a2fecfebc7)
 
 ## Deploy the application to the development and staging environment
 
@@ -244,13 +235,13 @@ deployToStg:
 
 :point_up_2: What is happening here?
 
-- It will deploy containerized application to development and staging environment whenever new changes pushed to `develop` or `master` branch respectively.
-- During the execution of the stage, it will set environment variables for Database credentials of the Mendix application, Kubernetes namespace and Kubernetes config file data.
+- It will deploy a containerized application to the development and staging environment whenever new changes are pushed to the `develop` or `master` branch respectively.
+- During the execution of the stage, it will set environment variables for Database credentials of the Mendix application, Kubernetes namespace, and Kubernetes config file data.
 
 ## Finally deploy the application to the production environment
 
 ```yaml
-# Deploy to Prd environment using deploy_template_def template.
+# Deploy to production environment using deploy_template_def template.
 deployToPrd:
   <<: *deploy_template_def
   variables:
@@ -275,9 +266,8 @@ deployToPrd:
 
 :point_up_2:
 
-- This stage will only trigger when new branch is pushed with `release/*`. Example branch name `release/1.0.0-alpha_05_202205`
-  
-- `release/*` is derived from the `master` branch to deploy to `production` environment.
+- This stage will only trigger when a new branch is pushed with `release/*`. Example branch name `release/1.0.0-alpha_05_202205`
+- `release/*` is derived from the `master` branch to deploy to the `production` environment.
   
 
 ## Clean the local Docker images
@@ -296,19 +286,16 @@ deleteCommitImage:
     - docker rmi ${CONTAINER_IMAGE_NAME}:${CONTAINER_IMAGE_TAG} ${CONTAINER_IMAGE_NAME}:latest
 ```
 
-- At the end of pipeline execution, this stage will remove junk by removing Docker image from Gitlab runner server.
+At the end of pipeline execution, this stage will remove junk by removing the Docker image from the Gitlab runner server.
 
 **Few areas to optimize...**
 
-- Helm repository was not implemented, so there was no way of versioning the Helm Chart at the time of implementation. And placed on Gitlab Runner without having a mechanism to fetch latest from Git repository. So, its more of toil to update files on Runner whenever changes happen in Helm chart.
-  
-- Docker registry server should have DNS name to allow secure communication over SSL.
-  
-- Every commit in the repo for branch `develop`, `master` and `release/*` would have separate docker image. And at the end of the stage, pipeline will also remove the respective Docker build image. Its overkill use of build resources across environment & waste of time.
-  
+- The Helm repository was not implemented, so there was no way of versioning the Helm Chart at the time of implementation. And placed on Gitlab Runner without having a mechanism to fetch the latest from the Git repository. So, it's more of a toil to update files on Runner whenever changes happen in the Helm chart.
+- Docker registry server should have a DNS name to allow secure communication over SSL.
+- Every commit in the repository for branch `develop`, `master`, and `release/*` will trigger a Docker image build. And at the end of the stage, the pipeline will also remove the respective Docker build image. It's an overkill use of building resources across the environment & waste of time.
 
-At the end of execution of the Gitlab pipeline to deploy the Mendix application, you should have your application up and running in your Kubernetes cluster. Considering, application configuration, docker build, and Helm chart is tested before.
+At the end of the execution of the Gitlab pipeline to deploy the Mendix application, you should have your application up and running in your Kubernetes cluster. Considering, the application configuration, docker build, and Helm chart is tested before.
 
-Best practice is to test individual stage manually before automate it in pipeline.
+The Best practice is to test individual stages manually before automating them in the pipeline.
 
-Congratulations! You have automated CI/CD Gitlab pipeline to deploy the Mendix application to Kubernetes cluster.
+Congratulations! You have an automated CI/CD Gitlab pipeline to deploy the Mendix application to the Kubernetes cluster.
