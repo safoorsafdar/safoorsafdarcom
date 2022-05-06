@@ -37,9 +37,9 @@ Development, staging, and production environments were provisioned using Kubespr
 
 ## Containerize the Mendix application with Docker
 
-The Mendix build pack for docker provided a standard way to build and run your Mendix application in a Docker container. You can learn more about the build pack at [GitHub - mendix/docker-mendix-buildpack: Build and Run Mendix in Docker](https://github.com/mendix/docker-mendix-buildpack)
+The Mendix build pack can help you to prepare a containerized version of your application. It can be part of your source code from start on Team Server or you can merge required docker files later in the process. This post will not cover the implementation of the Mendix Build Pack. 
 
-Mendix Build pack is a tool to prepare a containerized version of your application. It can be part of your source code from start on Team Server or you can merge required docker files later in the process.
+You can learn more about the build pack at [GitHub - mendix/docker-mendix-buildpack: Build and Run Mendix in Docker](https://github.com/mendix/docker-mendix-buildpack)
 
 Let's start building Gitlab Pipeline to deploy the Mendix application to Kubernetes.
 
