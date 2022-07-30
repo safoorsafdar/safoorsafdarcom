@@ -7,8 +7,6 @@ tags:
   - mysql
   - bigdelete
 ---
-# How to delete million MySQL records
-
 In this post, you will learn ways to delete records from the MySQL database server. This post goes through the methods to identify the solution to delete million of records with lesser time, fewer resources, and a 100% success rate. 
 
 In a typical scenario, you will delete the records with the MySQL query;
