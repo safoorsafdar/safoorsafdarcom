@@ -20,7 +20,7 @@ For example, count the total number of records that you want to delete. It will 
 
 ```mysql
 SELECT COUNT(*) FROM quote WHERE DATE(updated_at) < '2022-07-01';
--- 60000000
+-- Count: 60000000
 ```
 
 and, for example, delete all records that are older than 2022-07-01. Apply a limit to delete records in chunks. 
