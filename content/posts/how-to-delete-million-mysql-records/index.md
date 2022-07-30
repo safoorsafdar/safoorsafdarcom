@@ -7,6 +7,8 @@ tags:
   - mysql
   - bigdelete
 ---
+# How to delete million MySQL records
+
 In this post, you will learn ways to delete records from the MySQL database server. This post goes through the methods to delete the records with temp table, and pt-archiver.
 
 In a typical scenario, you will delete the records with the MySQL query;
@@ -68,9 +70,22 @@ Here are the advantages to doing DELETEs like this
 - The remaining 30 days are added back into "quote" while new INSERTs can take place.
 - Dropping the old version of "quote" does not interfere with new INSERTs
 
-
-
 > You can learn more about deleting large data records from http://mysql.rjweb.org/doc.php/deletebig
 
+Any solution that tries to delete so much data in one transaction is going to overwhelm the rollback segment and cause a lot of performance problems.
+
+A good tool to help is a `pt-archiver`. It performs incremental operations on moderate-sized batches of rows, as efficiently as possible. pt-archiver can copy, move, or delete rows depending on options.
+
+The documentation includes an example of deleting orphaned rows, which is exactly your scenario:
+
+```shell
+pt-archiver --source h=host,D=db,t=VALUE --purge \
+  --where 'NOT EXISTS(SELECT * FROM `KEY` WHERE key_id=`VALUE`.key_id)' \
+  --limit 1000 --commit-each
+```
+
+Executing this will take significantly longer to delete the data, but it won't use too many resources, and without interrupting service on your existing database. I have used it successfully to purge hundreds of millions of rows of outdated data.
+
+`pt-archiver` is part of the Percona Toolkit for MySQL, a free (GPL) set of scripts that help common tasks with MySQL and compatible databases.
 
 
