@@ -81,7 +81,7 @@ pt-archiver --source h=host,D=db,t=VALUE --purge \
   --limit 10000000 --commit-each
 ```
 
-Executing this will take longer to delete the data. But it will not use too much resources. And without interrupting service on your existing database. I have used it to delete millions of records of outdated data.
+Executing this will take longer to delete the data. But it will not use too many resources. And without interrupting service on your existing database. I have used it to delete millions of records of outdated data.
 
 `pt-archiver` is part of the Percona Toolkit for MySQL, a free (GPL) set of scripts that help common tasks with MySQL and compatible databases.
 
