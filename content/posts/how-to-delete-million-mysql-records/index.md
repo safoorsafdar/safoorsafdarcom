@@ -14,7 +14,7 @@ In this post, you will learn ways to delete records from the MySQL database serv
 In a typical scenario, you will delete the records with the MySQL query;
 `DELETE FROM * table where condition = ok` 
 
-A million records to delete from a low-performance database. It will take too much time and be hectic at the same time due to the error-prone procedure. This might also chock the database. 
+A million records to delete from a low-performance database. It will take too much time and be hectic at the same time due to the error-prone procedure. This might also burst the database. 
 
 The first approach you could adopt is to divide the total number of records into chunks. LIMIT your delete query and increment the limit with the last deleted index.
 
