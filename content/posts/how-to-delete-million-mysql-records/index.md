@@ -63,13 +63,9 @@ DROP TABLE quote_old;
 ```
 
 Here are the advantages to doing DELETEs like this
-
 - The table "quote" is switched with an empty table in a matter of seconds.
-
 - The table "quote" is immediately available for new INSERTs
-
 - The remaining 30 days are added back into "quote" while new INSERTs can take place.
-
 - Dropping the old version of "quote" does not interfere with new INSERTs
 
 
