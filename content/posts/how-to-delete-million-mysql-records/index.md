@@ -1,6 +1,6 @@
 ---
 title: How to delete million MySQL records
-date: 2022-07-30T22:04:38.510Z
+date: 2022-08-14T16:13:13.136Z
 tags:
   - devops
   - aws
