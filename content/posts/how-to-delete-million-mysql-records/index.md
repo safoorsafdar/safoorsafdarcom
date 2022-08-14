@@ -87,7 +87,7 @@ Executing this will take longer to delete the data. But it will not use too many
 
 These strategies will let you delete data with 100% success. But activity time is an important factor to understand. At this stage, you have learned 3 different ways to remove junk MySQL data from the database. 
 
-After the  POC of these strategies with 40GB table records deletion. I decided to go with "Temporary Table" over pt-archiver for production activity.
+After the  POC of these strategies with 40GB table records deletion. I decided to go with "Temporary Table" over `pt-archiver` for the production activity.
 
 In conclusion, the production activity should be shorter as much as it can. The "Temporary Table" can reduce production activity window time. The removal of the data can be performed in the background either manual or with the help of a pt-archiver.
 
