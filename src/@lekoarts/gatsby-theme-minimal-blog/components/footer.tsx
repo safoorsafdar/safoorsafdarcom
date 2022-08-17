@@ -26,9 +26,9 @@ const Footer = () => {
       <div>
         <Link
           aria-label="Hire for Consultation."
-          href="mailto:talk@safoorsafdar.com"
+          href="mailto:hi@safoorsafdar.com"
         >
-          talk@safoorsafdar.com
+          hi@safoorsafdar.com
         </Link>
       </div>
     </footer>
