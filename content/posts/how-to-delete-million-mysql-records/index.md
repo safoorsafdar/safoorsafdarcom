@@ -89,5 +89,4 @@ These strategies will let you delete data with 100% success. But activity time i
 
 After the  POC of these strategies with 40GB table records deletion. I decided to go with "Temporary Table" over `pt-archiver` for the production activity.
 
-In conclusion, the production activity should be shorter as much as it can. The "Temporary Table" can reduce production activity window time. The removal of the data can be performed in the background either manual or with the help of a pt-archiver.
-
+In conclusion, the production activity should be shorter as much as it can. The "Temporary Table" can reduce production activity window time. You can perform data removal activity in the non-peak hours either manually or with the help of `pr-archiver`.
