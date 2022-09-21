@@ -1,9 +1,12 @@
 ---
 title: My journey to export/import large MySQL data
-date: 2022-09-11T23:07:32.639Z
+date: 2022-09-21T23:28:44.040Z
 tags:
   - devops
   - aws
+  - aws-rds
+  - mysql
+  - database-migration
 ---
 In this post, you will learn about my journey to finding the best solution to restore large databases. And will go through the methods that I have POC. The aim is to migrate around 180GB of data on a new on-premises MySQL and AWS RDS.
 
@@ -13,37 +16,37 @@ The database belongs to the Magento2 eCommerce store. And the need was to perfor
 
 The activity contains the following steps:
 
-- Migrate Database, Migrate the database to a new MySQL server from the source database and to the AWS RDS.
-- Deploy the latest application code
-- Upgrade the Application
+* Migrate Database, Migrate the database to a new MySQL server from the source database and to the AWS RDS.
+* Deploy the latest application code
+* Upgrade the Application
 
 "Migrate Database" is the step, this post is going to review and find the best solution. The aim is to find the total duration of this activity. The post will attempt various POC to find the best possible solution.
 
 The project is running on a Hybrid cloud model. The old application is on Rackspace with 70% traffic responsibility. And the new application is on AWS with AWS RDS with 30% traffic responsibility for UAT.
 
-As part of the Magento2 upgrade, the activity is to perform migration from source DB to AWS and Rackspace. After successful migration, AWS will take 70% traffic.
+As part of the Magento2 upgrade, the activity is to perform migration from source DB to AWS and Rackspace. After successful migration, AWS will take 70% of traffic. 
 
-## POC-1 Traditional way of export/import
+## **POC-1 Traditional way to export/import**
 
-In the first attempt of the POC, let's use the `mysqldump`. Its client utility performs logical backups. And produce a set of SQL statements that can run on destination MySQL.
+In the first attempt of the POC, let's use the `mysqldump` utility. Its client utility performs logical backups. And produce a set of SQL statements that can run on destination MySQL.
 
 The performance of this solution was worst than expected.
 
-The export of the 100GB plus DB data from the source DB took around 3.5 to 4 hours. a5 minutes to transfer the dump to the destination server. And the import to the MySQL server took around 4 hours without 100% success. It failed after 4 hours of time without any error.  And a few tables were missing.
+The export of the 100GB plus DB data from the source DB took around 3.5 to 4 hours. 5 minutes to transfer the dump to the destination server. And the import to the MySQL server took around 4 hours without 100% success. It failed after 4 hours of time without any error.  And a few tables were missing. 
 
-The spent time on this activity was around 8 hours which does not leave a place for other parts of activity.
+The spent time on this activity was around 8 hours which does not leave a place for other parts of the activity.
 
 After the first POC, few actions were taken...
 
-- Increase bandwidth to transfer data between the same network servers. and which reduced the transfer time to 3 minutes. Thanks to the Rackspace support team.
-- As import was not successful. After some investigation, the destination server resources were at 100%. Most of the queries were timeouts. Added the alerts to track CPU & RAM usage at 80% & 90% on the destination server.
-- Compare the configuration from source MySQL to destination. And configure the "insert buffer size", "packet size" and a couple more.
+* Increase bandwidth to transfer data between the same network servers. and which reduced the transfer time to 3 minutes. Thanks to the Rackspace support team.
+* As import was not successful. After some investigation, the destination server resources were at 100%. Most of the queries were timeouts. Added the alerts to track CPU & RAM usage at 80% & 90% on the destination server.
+* Compare the configuration from source MySQL to destination. And configure the "insert buffer size", "packet size" and a couple more.
 
 Any solution that tries to import so much data in one transaction will cause a lot of performance problems. So, decided to convert the whole dump into chunks.
 
 ## POC-1.1 Split dump into chunks
 
-At this stage, I already have a dump of MySQL database via "mysqldump". I  can convert the complete database dump into chunks. For this purpose, the "bigsplit" shell script can help. You can learn more about this script at [http://blog.tty.nl/2011/12/28/splitting-a-database-dump](http://blog.tty.nl/2011/12/28/splitting-a-database-dump)
+At this stage, I already have a dump of MySQL database via "mysqldump". I  can convert the complete database dump into chunks. For this purpose, the "bigsplit" shell script can help. You can learn more about this script at <http://blog.tty.nl/2011/12/28/splitting-a-database-dump>
 
 ```bash
 #!/bin/bash
@@ -88,7 +91,7 @@ The above-mentioned script utilizes 'csplit' Linux utility. Before execution of 
 
 After the execution of this script on dumped MySQL '.sql' file. It will have the number of '.sql' chunks based on the total number of the tables. In my case, it was 602 chunks.
 
-I found a suggestion to import the MySQL dump with the source method. Prepared the shell script to run the chunks one by one.
+I found a suggestion to import the MySQL dump with the source method. I prepared the shell script to run the chunks one by one.
 
 ```bash
 #!/bin/sh
@@ -139,21 +142,21 @@ So, still in peruse to find a more suitable solution.
 
 After researching different available open source tools, I landed on 'MyDumper'. This is a MySQL backup tool that offers 2 tools.
 
-- “mydumper” which is responsible to export a consistent backup of MySQL databases
-- “myloader” reads the backup from “mydumper”, connects it to the destination database, and imports the backup.
+* “mydumper” which is responsible to export a consistent backup of MySQL databases
+* “myloader” reads the backup from “mydumper”, connects it to the destination database, and imports the backup.
 
-If you want to learn more about this tool, take a look at [https://github.com/mydumper/mydumper](https://github.com/mydumper/mydumper).
+If you want to learn more about this tool, take a look at <https://github.com/mydumper/mydumper>.
 
-**“MyDumper” installation for Centos...**
+**“MyDumper” installation for Centos 7**
 
 ```bash
 release=$(curl -Ls -o /dev/null -w %{url_effective} <https://github.com/mydumper/mydumper/releases/latest> | cut -d'/' -f8)
 yum install <https://github.com/mydumper/mydumper/releases/download/${release}/mydumper-${release:1}.el7.x86_64.rpm>
 ```
 
-Above mentioned command is to set up a centos 7 base server.
+Above mentioned command is to set up a centos 7 base server for the “MyDumper”.
 
-**Export data from the source…**
+**Export data from the source**
 
 "MyDumper" extracts the database data in parallel. And creates separate files from schemas and tables. That makes it easy to change them before restoring them.
 
@@ -179,9 +182,9 @@ It is important to track the execution time of command, for this I used `time`.
 
 👆Assuming you want to export your DB data from the source into the `--outputdir`
 
-- `--rows` will select a chunk of '500000' rows for a table.
-- `--threads` will use multi-thread execution based on the available CPU. You can decide this number based on your available CPU and server load.
-- `-G -E -R` will dump ‘Triggers’, ‘Events’, and ‘Routines’
+* `--rows` will select a chunk of '500000' rows for a table.
+* `--threads` will use multi-thread execution based on the available CPU. You can decide this number based on your available CPU and server load.
+* `-G -E -R` will dump ‘Triggers’, ‘Events’, and ‘Routines’
 
 With multi-thread and parallel execution of "mydumper" exporting the same database took around **8 to 10 minutes**. As compared to old POC, this is a huge improvement in time and operation.
 
@@ -200,7 +203,7 @@ find . -name "*schema*" | xargs sed -i -e 's/SQL SECURITY DEFINER//g'
 find . -name "*schema*" | xargs gzip
 ```
 
-**Import the data into the destination DB…**
+**Import the data into the destination DB**
 
 "myloader" is the tool to import the dump into the database, below command is the example
 
@@ -220,32 +223,30 @@ myloader \
 
 👆Above mentioned command will start the import of the database with "myloader"
 
-- `--queries-per-transaction` will execute queries per transaction.
-- `--threads` will use multi-thread execution based on the available CPU. Choose your number of threads according to your available CPU.
+* `--queries-per-transaction` will execute queries per transaction.
+* `--threads` will use multi-thread execution based on the available CPU. Choose your number of threads according to your available CPU.
 
 With multi-thread execution of "myloader" to import dump, it took around **16 to 20 minutes.**  I gotta be honest, the whole process of migrating from one server to another, took around **30 minutes** which is a huge improvement over other solutions.
 
-“MyDumper” utility is a clear winner to improve the performance of the operation that is acceptable during the production activity.
+“MyDumper” utility is a clear winner to improve the performance of the operation which is acceptable during the production activity.
 
-## POC-2.1 Verification of data against source DB
+## Verification of data against source DB
 
-The migration of MySQL database is complete, next move is to verify the database migration as compare to source DB. 
+The next move is to verify the database as compared to the source DB.  It is important to verify the data on both databases are the same after migration. Following are the few verifications you can perform:
 
-It is important to verify the data on both database are the same after migration. Following are the few of verification you can perform:
+* Check the tables count in the database
+* Check the triggers count in the database
+* Check the routines count in the database
+* Check the events count in the database
+* Check the rows count in the database
 
-- Check the tables count in database
-- Check the triggers count in database
-- Check the routines count in database
-- Check the events count in database
-- Check the rows count in database
-
-**Check the tables count in database**
+**Check the tables count in the database**
 
 ```sql
 SELECT table_schema, COUNT(*) as tables_count FROM information_schema.tables group by table_schema;
 ```
 
-**Check the triggers count in database**
+**Check the triggers count in the database**
 
 ```sql
 select trigger_schema, COUNT(*) as triggers_count from information_schema.triggers group by trigger_schema;
@@ -320,4 +321,19 @@ END$$
 DELIMITER ;
 ```
 
-The result of execution of the above mentioned verification step is same as target to source.
+These steps will ensure that the destination database matches the source database. 
+
+**Few pointers to migrating the database to AWS RDS**
+
+The data is ready to import, let’s prepare the AWS RDS instance for faster restoration. As I mentioned after POC-1, there is a couple of configuration that need to apply to MySQL before import. Create an AWS Parameter group with  “insert buffer size", "packet size" and “innodb_” related configurations, and attach it to the RDS instance. 
+
+You can also restore to a large RDS instance class to achieve faster restoration. And after the migration, you can lower down the RDS instance class.  
+
+And you can perform a verification process like I have mentioned earlier to make sure the data is the same as the source database.
+
+## Takeaways
+
+* It is important to spend some time on research and POC to find a better solution that you can use during the actual activity.
+* “MyDumper” is a multi-threaded and well-matured tool to use in production activity.
+* Do not forget to tune MySQL-related configuration to get better performance.
+* and last but not least, verification of the data after migration from the source to the destination should be part of the activity. It will help to ensure the integrity of the data.
