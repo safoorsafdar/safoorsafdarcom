@@ -10,7 +10,7 @@ tags:
 ---
 In this post, you will learn about my journey to finding the best solution to restore large databases. And will go through the methods that I have POC. The aim is to migrate around 180GB of data on a new on-premises MySQL and AWS RDS.
 
-**Little bit more background of the activity...**
+**Little bit background of the activity...**
 
 The database belongs to the Magento2 eCommerce store. And the need was to perform complete migration during the Magento2 upgrade.
 
@@ -22,13 +22,13 @@ The activity contains the following steps:
 
 "Migrate Database" is the step, this post is going to review and find the best solution. The aim is to find the total duration of this activity. The post will attempt various POC to find the best possible solution.
 
-The project is running on a Hybrid cloud model. The old application is on Rackspace with 70% traffic responsibility. And the new application is on AWS with AWS RDS with 30% traffic responsibility for UAT.
+The project is running on a Hybrid cloud model. The old application is on Rackspace with 70% traffic responsibility. And the new application is on AWS with AWS RDS database with 30% traffic responsibility for UAT.
 
 As part of the Magento2 upgrade, the activity is to perform migration from source DB to AWS and Rackspace. After successful migration, AWS will take 70% of traffic. 
 
 ## **POC-1 Traditional way to export/import**
 
-In the first attempt of the POC, let's use the `mysqldump` utility. Its client utility performs logical backups. And produce a set of SQL statements that can run on destination MySQL.
+In the first attempt of the POC, let's use the `mysqldump` utility. Its a client utility that performs logical backups. And produce a set of SQL statements that can run on destination MySQL.
 
 The performance of this solution was worst than expected.
 
@@ -138,9 +138,9 @@ At this stage, the export time of MySQL dump is still the same. The transfer imp
 
 So, still in peruse to find a more suitable solution.
 
-## **POC-2 Discovery of “MyDumper”**
+## POC-2 Discovery of “MyDumper”
 
-After researching different available open source tools, I landed on 'MyDumper'. This is a MySQL backup tool that offers 2 tools.
+After researching different available open source tools, I landed on "MyDumper". This is a MySQL backup tool that offers 2 tools.
 
 * “mydumper” which is responsible to export a consistent backup of MySQL databases
 * “myloader” reads the backup from “mydumper”, connects it to the destination database, and imports the backup.
@@ -161,7 +161,7 @@ Above mentioned command is to set up a centos 7 base server for the “MyDumper�
 "MyDumper" extracts the database data in parallel. And creates separate files from schemas and tables. That makes it easy to change them before restoring them.
 
 ```bash
-# Remember to run the following commands in the screen as it is a long running process.
+# Remember to run the following commands in the screen as it is a long-running process.
 time \
 mydumper \
 	--database="[Database name]" \
