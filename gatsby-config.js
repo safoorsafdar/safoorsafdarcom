@@ -8,10 +8,10 @@ module.exports = {
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-minimal-blog/gatsby-config.js
     siteTitle: `Safoor Safdar`,
-    siteTitleAlt: `Cloud Solution Architect and Consultant DevOps`,
-    siteHeadline: `Safoor Safdar is very well known cloud solution architect and devops. Hire for consultation.`,
+    siteTitleAlt: `A site reliability and devops engineer.`,
+    siteHeadline: `Safoor Safdar is very well known cloud solution architect and devops with wast experience of SRE. Contact for consultation.`,
     siteUrl: `https://safoorsafdar.com`,
-    siteDescription: `Safoor Safdar is very well known cloud solution architect and devops. Hire for consultation.`,
+    siteDescription: `Safoor Safdar is very well known cloud solution architect and devops with wast experience of SRE. Contact for consultation.`,
     siteLanguage: `en`,
     siteImage: `/banner.png`,
     author: `@safoorsafdar`,
@@ -35,17 +35,9 @@ module.exports = {
         ],
         externalLinks: [
           {
-            name: `Twitter`,
-            url: `https://twitter.com/safoorsafdar`,
-          },
-          {
-            name: `LinkedIn`,
+            name: `Linkedin`,
             url: `https://linkedin.com/in/safoorsafdar`,
-          },
-          {
-            name: `Github`,
-            url: `https://github.com/safoorsafdar`,
-          },
+          }
         ],
       },
     },
@@ -70,9 +62,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Safoor Safdar, well known Cloud Solution Architect and Consultant DevOps`,
+        name: `A site reliability and devops engineer. Contact for consultation.`,
         short_name: `SafoorSafdar`,
-        description: `Safoor Safdar is very well known cloud solution architect and devops. Hire for consultation.`,
+        description: `A site reliability and devops engineer. Contact for consultation.`,
         start_url: `/`,
         background_color: `#fff`,
         // This will impact how browsers show your PWA/website
@@ -137,7 +129,7 @@ module.exports = {
               }
             `,
             output: `rss.xml`,
-            title: `Safoor Safdar - A cloud solution architect and consultant devops. Hire for consultation.`,
+            title: `Safoor Safdar - A site reliability and devops engineer. Contact for consultation.`,
           },
         ],
       },
