@@ -3,7 +3,7 @@
   "name": "safoorsafdar-com",
   "description": "Source code for safoorsafdar.com",
   "version": "1.3.12",
-  "author": "Safoor Safdar <hi@safoorsafdar.com>",
+  "author": "Safoor Safdar <me@safoorsafdar.com>",
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
