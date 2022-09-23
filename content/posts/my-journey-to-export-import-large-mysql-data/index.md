@@ -232,7 +232,7 @@ With multi-thread execution of "myloader" to import dump, it took around **16 to
 
 ## Verification of data against source DB
 
-The next move is to verify the database as compared to the source DB.  It is important to verify the data on both databases are the same after migration. Following are the few verifications you can perform:
+The next step is to verify the database as compared to the source DB.  It is important to verify the data on both databases are the same after migration. Following are the few verifications you can perform:
 
 * Check the tables count in the database
 * Check the triggers count in the database
