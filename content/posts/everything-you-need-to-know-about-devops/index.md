@@ -39,8 +39,6 @@ Before DevOps became popular, many companies had a very **traditional applicatio
 
 You will learn some of the most difficult problems that DevOps has attempted to solve.
 
-
-
 **The gap between development and operations teams**
 
 It’s very common to see developers and operations people working. Developers create new features while the operations team deploys them on production environments. Each team works independently, without considering the other team's needs. This leads to increased complexity in software development processes and reduces productivity levels.
@@ -74,9 +72,9 @@ DevOps is a concept that helps to describe the collaboration of software develop
 \
 The DevOps movement has grown out of the Agile software development method. It aims to deliver working software in short cycles and to quickly adapt to changing customer requirements. DevOps began as an approach for automating testing and deployment of applications but has since expanded to include areas such as continuous integration (CI), continuous delivery (CD), continuous integration/deployment (CID), configuration management, monitoring and measurement, incident management, and problem management.
 
-**DevOps is a cross-functional role. It encompasses people, process, and technology**
+**DevOps is a cross-functional role. It encompasses people, processes, and technology**
 
-The role of DevOps Engineer can be summed up as follows:
+The role of the DevOps Engineer can be summed up as follows:
 
 * DevOps is the link between software development and IT operations to help deliver products faster while maintaining high quality.
 * DevOps engineers have a deep technical knowledge of both software development and IT operations. 
