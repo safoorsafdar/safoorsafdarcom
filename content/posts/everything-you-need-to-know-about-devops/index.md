@@ -63,3 +63,44 @@ When developers have access to real-time data about what's happening in producti
 **Increases Speed**
 
 Developers want to get their products out, but they can't do that if they're waiting on manual testing or deployments that take days. DevOps speeds up these processes by automating them.
+
+
+
+## DevOps as a Concept
+
+\
+DevOps is a concept that helps to describe the collaboration of software developers and information technology (IT) operations professionals. DevOps is a set of processes, methods, and tools that help bridge the gap between software development and IT operations.
+
+\
+The DevOps movement has grown out of the Agile software development method. It aims to deliver working software in short cycles and to quickly adapt to changing customer requirements. DevOps began as an approach for automating testing and deployment of applications but has since expanded to include areas such as continuous integration (CI), continuous delivery (CD), continuous integration/deployment (CID), configuration management, monitoring and measurement, incident management, and problem management.
+
+**DevOps is a cross-functional role. It encompasses people, process, and technology**
+
+The role of DevOps Engineer can be summed up as follows:
+
+* DevOps is the link between software development and IT operations to help deliver products faster while maintaining high quality.
+* DevOps engineers have a deep technical knowledge of both software development and IT operations. 
+* They have the skills to develop and maintain the infrastructure that supports continuous integration and continuous delivery (CI/CD). 
+* They also have an understanding of software development processes, tools, and workflows.
+
+
+
+## How Do You Become a DevOps Engineer?
+
+The first step to becoming a DevOps engineer is getting some experience working in IT. You don't need to be an expert coder (although it doesn't hurt), but you do need to know how servers work and how software gets deployed onto servers. If you have experience as an administrator or system administrator, that's even better.
+
+Next, you should get some hands-on experience with automation tools like Terraform, Ansible, Puppet, or Chef. These tools allow you to write scripts that tell your server exactly how everything should be configured, so when new code is pushed out by developers, it can automatically be deployed without manual intervention.
+
+## What is SRE?
+
+Site Reliability Engineering (SRE) is a specialized form of software engineering that focuses on reliability, availability, scalability, performance, and other qualities required to maintain large-scale services. SREs are responsible for monitoring services, fixing bugs, and deploying new features. They also work closely with product management and engineering teams to ensure the best possible user experience.
+
+
+
+### SREs vs DevOps
+
+SREs are often confused with DevOps engineers because they both work on software systems that run at scale in production environments. But there are some key differences between them:
+
+* SREs have an operations mindset while DevOps engineers have an engineering mindset
+* SREs work on global infrastructure while DevOps engineers work locally using local services
+* SREs focus on reliability while DevOps engineers focus on agility
