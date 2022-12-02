@@ -5,7 +5,9 @@ tags:
   - devops
   - aws
 ---
-Welcome to the DevOps series. In this article you will understand the:
+The DevOps movement is gaining momentum. It's here to stay, and it's going to affect how we develop software. But what exactly is DevOps? Whether you're doing development or operations work, being able to participate in a DevOps environment can help you be more efficient and increase quality.
+
+In this article you will understand the:
 
 * what exactly is DevOps
 * Intro and Overview
@@ -93,8 +95,6 @@ Next, you should get some hands-on experience with automation tools like Terrafo
 
 Site Reliability Engineering (SRE) is a specialized form of software engineering that focuses on reliability, availability, scalability, performance, and other qualities required to maintain large-scale services. SREs are responsible for monitoring services, fixing bugs, and deploying new features. They also work closely with product management and engineering teams to ensure the best possible user experience.
 
-
-
 ### SREs vs DevOps
 
 SREs are often confused with DevOps engineers because they both work on software systems that run at scale in production environments. But there are some key differences between them:
@@ -102,3 +102,9 @@ SREs are often confused with DevOps engineers because they both work on software
 * SREs have an operations mindset while DevOps engineers have an engineering mindset
 * SREs work on global infrastructure while DevOps engineers work locally using local services
 * SREs focus on reliability while DevOps engineers focus on agility
+
+
+
+Well, this guide has reached its conclusion. I hope that it has provided you with valuable information on both DevOps terminology, concepts and how the DevOps culture and principles can be implemented.
+
+I'm sure you have learned a lot from this article. I just wanted to thank you for reading. I hope to see you again!
