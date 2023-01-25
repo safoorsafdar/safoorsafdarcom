@@ -13,7 +13,7 @@ module.exports = {
     siteUrl: `https://safoorsafdar.com`,
     siteDescription: `Safoor Safdar is very well known cloud solution architect and devops with wast experience of SRE. Contact for consultation.`,
     siteLanguage: `en`,
-    siteImage: `/banner.png`,
+    siteImage: `/banner.jpg`,
     author: `@safoorsafdar`,
   },
   plugins: [
