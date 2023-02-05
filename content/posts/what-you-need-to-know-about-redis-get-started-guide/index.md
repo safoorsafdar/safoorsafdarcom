@@ -6,7 +6,7 @@ tags:
   - redis
   - nosql
 ---
-![Redis](https://lh5.googleusercontent.com/58JSVL__np2CZzpe2O0o1kNi_QproFbc88GDBRwRQY1fQlUv8RFXZgmVpiNuO9F9sVBWYxI1LbJ_rYrANtE3uYy_pXFJy94gdO7aRKilufaoco5Ozkq7xIITrLJdvSjqnVNizfC-KT1NXLaFkNiH0XKy6Td52FocDOcB2HgWIFKdoj99MHyvcYw8kTD8Tw "What You Need to Know About Redis, Get Started Guide")
+![Redis](redis-banner.png "What You Need to Know About Redis, Get Started Guide")
 
 ## Introduction
 
@@ -41,8 +41,6 @@ Developers are turning their heads to Redis due to its high performance, fast da
 Redis is a data structure server that can be used as a primary database. It's a key-value store, which means it stores data in the form of keys and values. These keys can be simple strings like "user.profile"
 
 ![Source: redis.io](https://lh4.googleusercontent.com/PEufROjyT4rLCVjgYgGNFWcswzOPUrhLtZ2DFLCSRU6BS3n28l3H6ePELlKzQjpK9ra28nZVZrRkgDOHQLHk3FD0CX1dyxeY7rRAgh5GHzQxm_sgqsue0e1SL2l3jY6onSLkg09L4Iz1Ih2HMIoD123Rg_XREyPda8CQyWAb2z3FAKvyDIZTSKrW6otJTQ "Redis as primary database")
-
-
 
 ### **Benefits of Using Redis**
 
@@ -136,7 +134,7 @@ Source: redis.io
 Although users can choose between these different mechanisms depending on their use case, snapshotting is useful for a point-in-time backup of data and AOF for a more granular data recovery.
 
 <aside>
-💡 \*Redis does not have a built-in backup feature. However, it does provide a way to create a snapshot of the current data set by using the command SAVE, which saves the data to disk in the RDB format. Additionally, Redis also has an BGSAVE command that creates a snapshot in the background, allowing the Redis server to continue accepting commands while the snapshot is being saved.\*
+💡 \\*Redis does not have a built-in backup feature. However, it does provide a way to create a snapshot of the current data set by using the command SAVE, which saves the data to disk in the RDB format. Additionally, Redis also has an BGSAVE command that creates a snapshot in the background, allowing the Redis server to continue accepting commands while the snapshot is being saved.\\*
 
 </aside>
 
