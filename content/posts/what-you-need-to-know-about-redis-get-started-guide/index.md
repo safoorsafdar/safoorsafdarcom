@@ -40,7 +40,7 @@ Developers are turning their heads to Redis due to its high performance, fast da
 
 Redis is a data structure server that can be used as a primary database. It's a key-value store, which means it stores data in the form of keys and values. These keys can be simple strings like "user.profile"
 
-![Source: redis.io](https://lh4.googleusercontent.com/PEufROjyT4rLCVjgYgGNFWcswzOPUrhLtZ2DFLCSRU6BS3n28l3H6ePELlKzQjpK9ra28nZVZrRkgDOHQLHk3FD0CX1dyxeY7rRAgh5GHzQxm_sgqsue0e1SL2l3jY6onSLkg09L4Iz1Ih2HMIoD123Rg_XREyPda8CQyWAb2z3FAKvyDIZTSKrW6otJTQ "Redis as primary database")
+![Redis as primary database](primary-database.png "Redis as primary database")
 
 ### **Benefits of Using Redis**
 
@@ -63,31 +63,31 @@ Here are some ways to use Redis as a database:
 
 **Caching:** Redis can store frequently accessed data in memory, which can help reduce resource utilization and improve application response times.
 
-![](https://lh5.googleusercontent.com/88M06uX1oo8_h-yT6ZM1u7K9fZzkxhoG2jYgAT9aFcEew8Csnt1NJirxDT9WET7pSGUvEa6Q38J1LI6OojghLlYoPMHLrWzvDQ8CuL8s_x6weYH0Gp2qXzJW0cOmQi5r-JZWzyrAUHeVNtGciY6_Zss1INwsewdx9BZ936xa11C2V261a6xG_4gHvJmfxA)
+![](how-redis-works.png)
 
 Source: devgenious.io
 
 **Session Management:** Redis can store session information, allowing faster access to user information across requests.
 
-![Source: multi-programming.com](https://lh5.googleusercontent.com/171e8X2-af5TZINZ-aah6E4pXAXBZUHOsYrHUOfjoMtbgtqLR0MoS9nq2VO2YR_j_dudx8bRPZQv0XRogEuto4_9PXchSSyvCv3tQEIJjwM5TOMD1yLpGtiPu6c5R_ZPvoKcLEDhHWrJXxU1-0uF8mZoOKth0BSdNBdgm8Zn2JBX8z2jhHXJoOuI6o0nsQ)
+![Session Management](session-management.png "Session Management")
 
 Source: [jinchoy.oopi.io](http://jinchoy.oopi.io)
 
 **Pub/Sub Messaging:** Redis's Pub/Sub messaging system enables developers to send messages between applications or services in real-time without having to depend on centralized message queues.
 
-![Source: jinchoy.oopi.io](https://lh5.googleusercontent.com/-6CDC5JnCkIsPm75rPQ-4qrwK9Vy2WjOkfJ9A9waPcv_rJ1T0dMJ25O1QH3UxO_kFtbsxfmgD2DLZoPRluglO5Mgd8yEZKsn2KkAW69RrwKdujVXNj0dqrjzJodEKOyHVOpe5EC4bkM1MsZaXAiO0XyLmwI8KzABmJfpbfhUYTtMSDYDH8l67d_6513p)
+![Source: jinchoy.oopi.io](pub-sub-messaging.png)
 
 Source: jinchoy.oopi.io
 
 **Data Replication & Persistence:** Redis provides features like data replication and persistence, which make it easy to back up and restore data in case of an outage or system failure.
 
-![](https://lh3.googleusercontent.com/R2W2pctw-C2GmrEFfZkJqprRMpzGygOe1W8IW9QxRCx03usP_4Fe-izR5jbZpAmKsD9SDdXSIdqAZccouLGeqvoID2D118t-JceU5pkGX3xvnVbRINoZ5LUnThXh5dUM4P1AAkrd5SdJg9zXXOI4luSwTib5qok_lUBHfp3oeNGvskZr2IJxgV5I9EMY)
+![](data-replication-persistance.png)
 
 Source: educba.com
 
 **High Availability & Scalability:** Redis makes it easy to scale out applications by adding new nodes when needed, helping ensure that applications remain available even during periods of high load.
 
-![Source: redis.io](high-availablilty-and-scalability.png)
+![High Availability & Scalability](high-availablilty-and-scalability.png "High Availability & Scalability")
 
 Source: redis.io
 
@@ -97,7 +97,7 @@ Using Redis as a multi-model database makes it easy to access different data typ
 
 Additionally, since Redis is an in-memory database, it can provide faster read/write speeds than traditional disk-based databases.
 
-![](https://lh3.googleusercontent.com/1BFQdtJuoUG4YScY1p26ZSbJiUqNezPrxl5sDPmrbn5dVsyHHxv3waVkeb-p673k7iBv4P4sB-lTgywFzQKj5NYaVYS2ISHoDtiL4SnePjeNKRpxliJFuxXOK_dpKW3Hvzxt2m7gWrp_SvNDy5Yb88CvYPGEfMaw6guzheCX-64bJsheBwSBkeFjDLPN)
+![Redis as a Multi-Model Database](https://lh3.googleusercontent.com/1BFQdtJuoUG4YScY1p26ZSbJiUqNezPrxl5sDPmrbn5dVsyHHxv3waVkeb-p673k7iBv4P4sB-lTgywFzQKj5NYaVYS2ISHoDtiL4SnePjeNKRpxliJFuxXOK_dpKW3Hvzxt2m7gWrp_SvNDy5Yb88CvYPGEfMaw6guzheCX-64bJsheBwSBkeFjDLPN "Redis as a Multi-Model Database")
 
 Source: redis.io
 
@@ -111,7 +111,7 @@ Redis's multi-model feature allows users to store data in a variety of formats, 
 * Typos.
 * Bitmaps
 
-![](https://lh5.googleusercontent.com/vJPBhGT3VLfXoLHLlvVJk1n79UjsqW6HaIYoE1PzhwdGSoDvCNH0GEAhWYOwI2qCA1wehe9UMPl7u9F3iYaq4Gd3KBbOkBvmRgkD1mP97KGaAvtuqEdw1xlhVu1bAQktVAwbx3eTiYXVRI2fLYfMBx-oXckKlanjiGeA5KaOEBUOEPoqN8tBksS5jwnt0g)
+![Redis's multi-model feature](https://lh5.googleusercontent.com/vJPBhGT3VLfXoLHLlvVJk1n79UjsqW6HaIYoE1PzhwdGSoDvCNH0GEAhWYOwI2qCA1wehe9UMPl7u9F3iYaq4Gd3KBbOkBvmRgkD1mP97KGaAvtuqEdw1xlhVu1bAQktVAwbx3eTiYXVRI2fLYfMBx-oXckKlanjiGeA5KaOEBUOEPoqN8tBksS5jwnt0g "Redis's multi-model feature")
 
 Source: webmedis.com
 
@@ -127,14 +127,14 @@ Redis can protect its data and ensure that the information is not lost by using 
 
 AOF is another feature of Redis that ensures the durability and reliability of the data stored in it. It works by writing all the changes made to the database into a file on disk. As such, if you ever need to restore your database from scratch, you can replay all the recorded changes from this file and get back up and running quickly. Both snapshotting and AOF ensure that your data remains safe even when things go wrong with your database.
 
-![](aof-snapshot.png)
+![Durability Through Snapshotting and AOF in Redis](aof-snapshot.png "Durability Through Snapshotting and AOF in Redis")
 
 Source: redis.io
 
 Although users can choose between these different mechanisms depending on their use case, snapshotting is useful for a point-in-time backup of data and AOF for a more granular data recovery.
 
 <aside>
-💡 \\*Redis does not have a built-in backup feature. However, it does provide a way to create a snapshot of the current data set by using the command SAVE, which saves the data to disk in the RDB format. Additionally, Redis also has an BGSAVE command that creates a snapshot in the background, allowing the Redis server to continue accepting commands while the snapshot is being saved.\\*
+💡 \\\*Redis does not have a built-in backup feature. However, it does provide a way to create a snapshot of the current data set by using the command SAVE, which saves the data to disk in the RDB format. Additionally, Redis also has an BGSAVE command that creates a snapshot in the background, allowing the Redis server to continue accepting commands while the snapshot is being saved.\\\*
 
 </aside>
 
