@@ -6,7 +6,7 @@ tags:
   - redis
   - nosql
 ---
-![Redis](redis-banner.png "What You Need to Know About Redis, Get Started Guide")
+![What You Need to Know About Redis, Get Started Guide](redis-banner.png "What You Need to Know About Redis, Get Started Guide")
 
 ## Introduction
 
@@ -40,7 +40,7 @@ Developers are turning their heads to Redis due to its high performance, fast da
 
 Redis is a data structure server that can be used as a primary database. It's a key-value store, which means it stores data in the form of keys and values. These keys can be simple strings like "user.profile"
 
-![Redis as primary database](primary-database.png "Redis as primary database")
+![Redis as a Primary Database](primary-database.png "Redis as a Primary Database")
 
 ### **Benefits of Using Redis**
 
@@ -63,25 +63,25 @@ Here are some ways to use Redis as a database:
 
 **Caching:** Redis can store frequently accessed data in memory, which can help reduce resource utilization and improve application response times.
 
-![](how-redis-works.png)
+![How redis work](how-redis-works.png)
 
-Source: devgenious.io
+*Source: devgenious.io*
 
 **Session Management:** Redis can store session information, allowing faster access to user information across requests.
 
 ![Session Management](session-management.png "Session Management")
 
-Source: [jinchoy.oopi.io](http://jinchoy.oopi.io)
+*Source: jinchoy.oopi.io*
 
 **Pub/Sub Messaging:** Redis's Pub/Sub messaging system enables developers to send messages between applications or services in real-time without having to depend on centralized message queues.
 
 ![Source: jinchoy.oopi.io](pub-sub-messaging.png)
 
-Source: jinchoy.oopi.io
+*Source: jinchoy.oopi.io*
 
 **Data Replication & Persistence:** Redis provides features like data replication and persistence, which make it easy to back up and restore data in case of an outage or system failure.
 
-![](data-replication-persistance.png)
+![Data Replication & Persistence](data-replication-persistance.png "Data Replication & Persistence")
 
 Source: educba.com
 
@@ -134,7 +134,7 @@ Source: redis.io
 Although users can choose between these different mechanisms depending on their use case, snapshotting is useful for a point-in-time backup of data and AOF for a more granular data recovery.
 
 <aside>
-💡 \\\*Redis does not have a built-in backup feature. However, it does provide a way to create a snapshot of the current data set by using the command SAVE, which saves the data to disk in the RDB format. Additionally, Redis also has an BGSAVE command that creates a snapshot in the background, allowing the Redis server to continue accepting commands while the snapshot is being saved.\\\*
+💡 \\\\\*Redis does not have a built-in backup feature. However, it does provide a way to create a snapshot of the current data set by using the command SAVE, which saves the data to disk in the RDB format. Additionally, Redis also has an BGSAVE command that creates a snapshot in the background, allowing the Redis server to continue accepting commands while the snapshot is being saved.\\\\\*
 
 </aside>
 
