@@ -55,7 +55,7 @@ Terraform inputs and outputs are used to manage the configuration and state of i
 
 This section presents a step-by-step, quick start example to help you get up and running with Oracle Cloud Infrastructure (OCI) Container Engine for Kubernetes (OKE) using Terraform. This guide includes Terraform configuration snippets that demonstrate how to create and manage an OKE cluster using the Terraform Registry module.
 
-1. In your project root, create a `provider.tf` file. 
+* In your project root, create a `provider.tf` file.  
 
 ```yaml
 provider "oci" {
@@ -76,7 +76,7 @@ provider "oci" {
 }
 ```
 
-1. In your project root, create a `variables.tf` file and add variables for your project. You can copy the existing [variables.tf](https://github.com/oracle-terraform-modules/terraform-oci-oke/blob/main/variables.tf) in the OKE module root.
+* In your project root, create a `variables.tf` file and add variables for your project. You can copy the existing [variables.tf](https://github.com/oracle-terraform-modules/terraform-oci-oke/blob/main/variables.tf) in the OKE module root.
 
 ```yaml
 # OCI Provider parameters
@@ -129,7 +129,7 @@ variable "compartment_id" {
 }
 ```
 
-1. In your project root, create a `versions.tf` file and add the following:
+* In your project root, create a `versions.tf` file and add the following:
 
 ```yaml
 terraform {
@@ -144,7 +144,7 @@ terraform {
 }
 ```
 
-1. In your project root, create a main.tf file and add the following:
+* In your project root, create a main.tf file and add the following:
 
 ```yaml
 module "oke" {
