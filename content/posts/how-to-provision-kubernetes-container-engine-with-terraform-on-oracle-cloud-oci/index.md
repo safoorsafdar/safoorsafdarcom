@@ -270,8 +270,8 @@ From ssh to the worker nodes, you can follow this step:
 
 In conclusion, provisioning a Kubernetes cluster or Oracle Kubernetes Engine (OKE) using Terraform or Oracle Cloud Infrastructure (OCI) can greatly simplify and automate the process of setting up and managing a cloud-based system. 
 
-This blog, might help you boost some invaluable knowledge that will streamline your infrastructure deployment and management process.
+This article might help you boost some invaluable knowledge that will streamline your infrastructure deployment and management process.
 
 By following the steps outlined in this blog, you should now have a solid foundation for provisioning your own Kubernetes and Container Engine infrastructure on OCI with Terraform. You're one step closer to taking full advantage of the benefits that this powerful tool offers, such as increased efficiency, reduced downtime, and better collaboration.
 
-So what's next? It's time to put all that knowledge into practice. Use what you've learned to provision your own Kubernetes and Container Engine infrastructure on OCI with Terraform. And remember, if you ever need a refresher or run into any roadblocks, this blog is here for you.
+So what's next? It's time to put all that knowledge into practice. Use what you've learned to provision your own Kubernetes and Container Engine infrastructure on OCI with Terraform. And remember, if you ever need a refresher or run into any roadblocks, this article is here for you
