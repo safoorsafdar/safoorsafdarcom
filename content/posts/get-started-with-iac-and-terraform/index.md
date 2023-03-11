@@ -144,7 +144,7 @@ To get started with Terraform, follow these steps:
 5. Use the **`terraform apply`** command to create, modify, or delete resources.
 6. Use the **`terraform destroy`** command to remove all resources created by Terraform.
 
-## Summary:
+## Summary
 
 In conclusion, Infrastructure as Code (IAC) is an approach to managing IT infrastructure through code, which provides numerous benefits such as faster and more efficient infrastructure deployment, improved scalability, better infrastructure management, consistency, and eliminates manual errors. 
 
