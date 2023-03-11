@@ -87,8 +87,6 @@ Terraform can be used in a variety of scenarios, including cloud infrastructure 
 | Microservices Deployment | Terraform can be used to deploy microservices-based applications by provisioning the necessary infrastructure resources. |
 | Serverless Infrastructure | Terraform can be used to provision serverless infrastructure on cloud platforms, such as AWS Lambda and Azure Functions. |
 
-[data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e](data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e)
-
 ## How Terraform Works
 
 Terraform works by defining and managing infrastructure resources through code. This code is written in HashiCorp Configuration Language (HCL) and describes the desired state of the infrastructure.
