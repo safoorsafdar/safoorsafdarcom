@@ -23,11 +23,11 @@ IAC provides numerous benefits, including faster and more efficient infrastructu
 
 There are many IAC tools available, including Terraform, Ansible, and Chef. Each tool has its own unique features and capabilities.
 
-| IAC Tool | Main Focus | Capabilities | Supported Providers |
-| --- | --- | --- | --- |
-| Terraform | Infrastructure Provisioning | Declarative Syntax, Resource Graph, Dependency Management | AWS, Azure, GCP, and more |
-| Ansible | Configuration Management and Automation | Agentless, Idempotent, Easy-to-learn language | AWS, Azure, GCP, and more |
-| Chef | System-level Configuration and Policy Management | Recipe-based Configuration, Easy integration with Cloud platforms | AWS, Azure, GCP, and more |
+| IAC Tool  | Main Focus                                       | Capabilities                                                      | Supported Providers       |
+| --------- | ------------------------------------------------ | ----------------------------------------------------------------- | ------------------------- |
+| Terraform | Infrastructure Provisioning                      | Declarative Syntax, Resource Graph, Dependency Management         | AWS, Azure, GCP, and more |
+| Ansible   | Configuration Management and Automation          | Agentless, Idempotent, Easy-to-learn language                     | AWS, Azure, GCP, and more |
+| Chef      | System-level Configuration and Policy Management | Recipe-based Configuration, Easy integration with Cloud platforms | AWS, Azure, GCP, and more |
 
 ### Declarative and Imperative Approaches in Terraform
 
@@ -37,16 +37,16 @@ Terraform uses a declarative approach to infrastructure management, meaning that
 
 While all IAC tools automate infrastructure management, they differ in their approach. Some tools use a declarative approach, which focuses on defining the desired state of infrastructure resources, while others use an imperative approach, which involves defining the steps required to achieve the desired state.
 
-| IAC Tool | Approach | Description |
-| --- | --- | --- |
-| Terraform | Declarative | Defines the desired state of infrastructure resources and lets Terraform handle the details of how to achieve that state |
-| Ansible | Declarative | Uses YAML-based configuration files to define the desired state of infrastructure resources |
-| Chef | Declarative | Uses recipes to define the desired state of infrastructure resources and applies them to nodes |
-| Puppet | Declarative | Uses a declarative language to define the desired state of infrastructure resources and applies changes to nodes |
-| SaltStack | Imperative | Uses a domain-specific language to define the steps required to achieve the desired state of infrastructure resources |
-| CFEngine | Imperative | Uses a declarative language to define the desired state of infrastructure resources and applies changes to nodes |
-| PowerShell DSC | Declarative | Uses PowerShell scripts to define the desired state of infrastructure resources and applies changes to nodes |
-| Kubernetes | Declarative | Uses YAML-based configuration files to define the desired state of containers and their infrastructure requirements |
+| IAC Tool       | Approach    | Description                                                                                                              |
+| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Terraform      | Declarative | Defines the desired state of infrastructure resources and lets Terraform handle the details of how to achieve that state |
+| Ansible        | Declarative | Uses YAML-based configuration files to define the desired state of infrastructure resources                              |
+| Chef           | Declarative | Uses recipes to define the desired state of infrastructure resources and applies them to nodes                           |
+| Puppet         | Declarative | Uses a declarative language to define the desired state of infrastructure resources and applies changes to nodes         |
+| SaltStack      | Imperative  | Uses a domain-specific language to define the steps required to achieve the desired state of infrastructure resources    |
+| CFEngine       | Imperative  | Uses a declarative language to define the desired state of infrastructure resources and applies changes to nodes         |
+| PowerShell DSC | Declarative | Uses PowerShell scripts to define the desired state of infrastructure resources and applies changes to nodes             |
+| Kubernetes     | Declarative | Uses YAML-based configuration files to define the desired state of containers and their infrastructure requirements      |
 
 ### Distinction between two phases in IAC - Initial setup and maintenance
 
@@ -74,18 +74,18 @@ Infrastructure provisioning involves the creation of infrastructure resources li
 
 Terraform can be used in a variety of scenarios, including cloud infrastructure provisioning, on-premises infrastructure provisioning, and multi-cloud deployments. It can also be used for continuous deployment and testing.
 
-| Use Case | Application |
-| --- | --- |
-| Infrastructure as Code | Terraform allows for infrastructure provisioning through code, which provides version control and easy collaboration. |
-| Cloud Platform Provisioning | Terraform can be used to provision resources on major cloud providers such as AWS, Google Cloud, and Azure. |
-| Multi-Cloud Management | Terraform enables organizations to manage infrastructure across multiple cloud providers and on-premises data centers. |
-| DevOps Automation | Terraform can automate infrastructure deployment, which helps to accelerate development cycles and reduce the risk of human error. |
-| Continuous Delivery | Terraform can be used as part of a continuous delivery pipeline to automate infrastructure provisioning and deployments. |
-| Compliance as Code | Terraform allows for infrastructure to be provisioned with security and compliance policies in mind, providing an auditable trail of changes. |
-| Disaster Recovery | Terraform can be used to quickly provision disaster recovery infrastructure in the event of a failure. |
-| Immutable Infrastructure | Terraform can be used to create immutable infrastructure, which helps to increase reliability and reduce maintenance overhead. |
-| Microservices Deployment | Terraform can be used to deploy microservices-based applications by provisioning the necessary infrastructure resources. |
-| Serverless Infrastructure | Terraform can be used to provision serverless infrastructure on cloud platforms, such as AWS Lambda and Azure Functions. |
+| Use Case                    | Application                                                                                                                                   |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Infrastructure as Code      | Terraform allows for infrastructure provisioning through code, which provides version control and easy collaboration.                         |
+| Cloud Platform Provisioning | Terraform can be used to provision resources on major cloud providers such as AWS, Google Cloud, and Azure.                                   |
+| Multi-Cloud Management      | Terraform enables organizations to manage infrastructure across multiple cloud providers and on-premises data centers.                        |
+| DevOps Automation           | Terraform can automate infrastructure deployment, which helps to accelerate development cycles and reduce the risk of human error.            |
+| Continuous Delivery         | Terraform can be used as part of a continuous delivery pipeline to automate infrastructure provisioning and deployments.                      |
+| Compliance as Code          | Terraform allows for infrastructure to be provisioned with security and compliance policies in mind, providing an auditable trail of changes. |
+| Disaster Recovery           | Terraform can be used to quickly provision disaster recovery infrastructure in the event of a failure.                                        |
+| Immutable Infrastructure    | Terraform can be used to create immutable infrastructure, which helps to increase reliability and reduce maintenance overhead.                |
+| Microservices Deployment    | Terraform can be used to deploy microservices-based applications by provisioning the necessary infrastructure resources.                      |
+| Serverless Infrastructure   | Terraform can be used to provision serverless infrastructure on cloud platforms, such as AWS Lambda and Azure Functions.                      |
 
 ## How Terraform Works
 
@@ -153,3 +153,7 @@ There are many IAC tools available, including Terraform, Ansible, and Chef, each
 Terraform can be used in a variety of scenarios, including cloud infrastructure provisioning, on-premises infrastructure provisioning, and multi-cloud deployments, making it a versatile tool for infrastructure management. 
 
 Ultimately, IAC tools like Terraform provide organizations with a more efficient and scalable approach to infrastructure management, enabling them to meet the changing needs of their business while reducing the risk of human error.
+
+🔗 Want to deepen your knowledge of Terraform?  check my blog post on [How to provision a Kubernetes container engine with Terraform on Oracle Cloud Infrastructure (OCI)](https://safoorsafdar.com/post/how-to-provision-kubernetes-container-engine-with-terraform-on-oracle-cloud-oci).
+
+Hi! I am Safoor Safdar an experienced SRE and DevOps. [Read More](https://safoorsafdar.com/about). Don't hesitate to reach out! You can find me on [LinkedIn](https://linkedin.com/in/safoorsafdar), or simply shoot me an email at[me@safoorsafdar.com](mailto:me@safoorsafdar.com)
