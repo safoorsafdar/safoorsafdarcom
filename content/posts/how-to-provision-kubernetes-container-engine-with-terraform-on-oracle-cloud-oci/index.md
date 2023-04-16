@@ -274,4 +274,9 @@ This article might help you boost some invaluable knowledge that will streamline
 
 By following the steps outlined in this blog, you should now have a solid foundation for provisioning your own Kubernetes and Container Engine infrastructure on OCI with Terraform. You're one step closer to taking full advantage of the benefits that this powerful tool offers, such as increased efficiency, reduced downtime, and better collaboration.
 
-So what's next? It's time to put all that knowledge into practice. Use what you've learned to provision your own Kubernetes and Container Engine infrastructure on OCI with Terraform. And remember, if you ever need a refresher or run into any roadblocks, this article is here for you
+So what's next? It's time to put all that knowledge into practice. Use what you've learned to provision your own Kubernetes and Container Engine infrastructure on OCI with Terraform. And remember, if you ever need a refresher or run into any roadblocks, this article is here for you. 
+
+
+🔗 Want to deepen your knowledge of Terraform? check my blog post on [Get started with IAC and Terraform](https://safoorsafdar.com/post/get-started-with-iac-and-terraform).
+
+Hi! I am Safoor Safdar an experienced SRE and DevOps. [Read More](https://safoorsafdar.com/about). Don't hesitate to reach out! You can find me on [LinkedIn](https://linkedin.com/in/safoorsafdar), or simply shoot me an email at[me@safoorsafdar.com](mailto:me@safoorsafdar.com)
