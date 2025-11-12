@@ -8,6 +8,8 @@ tags:
   - mendix
   - process-automation
 ---
+# Source code continues integration of Mendix application with Gitlab Pipeline
+
 Mendix is a high productivity low-code collaborative development app platform that enables you to build and continuously improve mobile and web applications at scale.
 
 Mendix supports the use of a centralized version control repository based on Subversion (SVN), which is the Mendix Team Server. Every project built using the Mendix Platform comes with the Team Server version control system.
@@ -20,8 +22,8 @@ The application code should be present in the Gitlab repository so that another 
 
 👇 Here are the step-by-step process of implementing this pipeline.
 
-* Fetch the changes from Mendix Team Server
-* Clone the counterpart repository from Gitlab
+* Fetch the changes from the Mendix Team Server
+* Clone the counterpart repository from GitLab
 * Merge the changes from Mendix SVN to the Gitlab repository locally.
 * Publish it to Gitlab's respective repository.
 
@@ -206,6 +208,6 @@ garbag-collector:
   - rm -rf ./*
 ```
 
-💥 You may want to create a temp branch during the process after "rsync" the SVN and Gitlab repository, and based on that temp branch, anyone can open the PR to follow the proper practices to graduate your changes to the Kubernetes environment.
+💥 You may want to create a temp branch during the process after "rsync" the SVN and Gitlab repository, and based on that temp branch, anyone can open a PR to follow the proper practices to graduate your changes to the Kubernetes environment.
 
 You can learn more about the [CI/CD pipelines | GitLab](https://docs.gitlab.com/ee/ci/pipelines/), and Configuring the Docker in Docker [GitLab Runner | GitLab](https://docs.gitlab.com/runner/) and [Mendix](https://docs.mendix.com/)
