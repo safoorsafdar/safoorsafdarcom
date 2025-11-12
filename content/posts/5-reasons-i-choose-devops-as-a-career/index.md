@@ -5,6 +5,8 @@ tags:
   - devops
   - aws
 ---
+# 5 Reasons I chose DevOps as a Career
+
 I have been working in IT for over 10 years. I have had the chance to work with a variety of technologies and companies. I have worked as a developer, a tester, an architect, and a technical lead.
 
 I have seen many different ways of doing things and have learned about the pros and cons of each approach.
@@ -34,6 +36,5 @@ The demand for DevOps professionals has never been higher. According to a [study
 #### 5. The Opportunity To Work With Many Technologies
 
 As a DevOps professional, you will not be limited to just one technology or platform but will be able to work on multiple technologies at once. This allows you to develop your skill set while working with different technologies and gaining experience in areas that may not have been exposed before such as cloud computing or data analytics.
-
 
 I highly recommend taking a close look at DevOps and considering it as an area of development to pursue. It is still a relatively new field, but the career opportunities are great and it has the potential to be around for years to come. I hope that this article provided some information and encouragement on the subject and will help you on your journey to learn more about DevOps.
