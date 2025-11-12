@@ -1,6 +1,6 @@
 ---
 title: Source code continues integration of Mendix application with Gitlab Pipeline
-date: 2022-04-10T01:05:25.244Z
+date: '2025-11-12'
 tags:
   - devops
   - on-premises
@@ -13,6 +13,8 @@ Mendix is a high productivity low-code collaborative development app platform th
 Mendix supports the use of a centralized version control repository based on Subversion (SVN), which is the Mendix Team Server. Every project built using the Mendix Platform comes with the Team Server version control system.
 
 The infrastructure technology stack was deployed on-premises, including Kubernetes and Gitlab as two of its main components. The aim was to deploy the Mendix application to Kubernetes in a continuous integration/continuous delivery fashion using the help of Gitlab Pipeline.
+
+safoorsafdar.com
 
 Git is a distributed version control system, but Subversion (SVN) is a centralized version control system. Developers may find it difficult to create a Continuous Integration/Continuous Deployment pipeline that converts SVN to Git, as there is no suitable way to implement it in a declarative paradigm.
 
@@ -41,12 +43,13 @@ stages:
 
 👆
 
-* `image` is to define docker-in-docker based image to execute Gitlab pipeline stages. 
+* `image` is to define docker-in-docker based image to execute Gitlab pipeline stages.
 * and `stages` is to divide the complete process into multiple steps.
 
 ## Fetch the changes from Mendix Team Server
 
-```yaml{3-7}
+```yaml
+{3-7}
 # pipeline.yaml
 variables:
   SVN_SRC_PATH: ${CI_BUILDS_DIR}/${CI_PROJECT_PATH}/svnsrc
