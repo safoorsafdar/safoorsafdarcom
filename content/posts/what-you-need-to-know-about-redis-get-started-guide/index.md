@@ -12,6 +12,8 @@ tags:
 
 Are you looking for ways to improve the performance and scalability of your technical stack? Look no further than Redis! In this blog, you will explore various ways in which you can make Redis work for you. By the end of this blog, you will have a good understanding of how to use Redis to your advantage and unlock its full potential. So, without further ado, let's dive in!
 
+this is auto save
+
 ## Defining Redis
 
 Redis, is an open-source caching and database service, making it a popular choice among many modern applications. It is the most popular in-memory database because it stores datasets in memory, making it incredibly fast and efficient when working with data.
