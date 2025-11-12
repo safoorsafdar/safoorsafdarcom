@@ -14,6 +14,8 @@ Mendix supports the use of a centralized version control repository based on Sub
 
 The infrastructure technology stack was deployed on-premises, including Kubernetes and Gitlab as two of its main components. The aim was to deploy the Mendix application to Kubernetes in a continuous integration/continuous delivery fashion using the help of Gitlab Pipeline.
 
+safoorsafdar.com 
+
 Git is a distributed version control system, but Subversion (SVN) is a centralized version control system. Developers may find it difficult to create a Continuous Integration/Continuous Deployment pipeline that converts SVN to Git, as there is no suitable way to implement it in a declarative paradigm.
 
 The application code should be present in the Gitlab repository so that another pipeline process can make it Kubernetes-friendly. This involves preparing a Docker image for deployment and publishing it to the Docker repository, and deploying an application through a Helm chart to the Kubernetes environment.
