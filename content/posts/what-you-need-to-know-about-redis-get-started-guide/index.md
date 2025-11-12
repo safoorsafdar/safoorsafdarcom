@@ -1,12 +1,12 @@
 ---
-title: What You Need to Know About Redis, Get Started Guide
+title: 'What You Need to Know About Redis, Get Started Guide'
 date: 2023-02-05T16:17:07.342Z
 tags:
   - devops
   - redis
   - nosql
 ---
-![What You Need to Know About Redis, Get Started Guide](redis-banner.png "What You Need to Know About Redis, Get Started Guide")
+# What You Need to Know About Redis, Get Started Guide
 
 ## Introduction
 
