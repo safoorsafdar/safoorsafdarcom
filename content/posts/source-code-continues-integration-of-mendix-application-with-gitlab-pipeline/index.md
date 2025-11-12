@@ -41,12 +41,13 @@ stages:
 
 👆
 
-* `image` is to define docker-in-docker based image to execute Gitlab pipeline stages. 
+* `image` is to define docker-in-docker based image to execute Gitlab pipeline stages.
 * and `stages` is to divide the complete process into multiple steps.
 
 ## Fetch the changes from Mendix Team Server
 
-```yaml{3-7}
+```yaml
+{3-7}
 # pipeline.yaml
 variables:
   SVN_SRC_PATH: ${CI_BUILDS_DIR}/${CI_PROJECT_PATH}/svnsrc
