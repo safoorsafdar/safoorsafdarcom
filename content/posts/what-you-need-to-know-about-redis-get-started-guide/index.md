@@ -1,5 +1,5 @@
 ---
-title: What You Need to Know About Redis, Get Started Guide
+title: 'What You Need to Know About Redis, Get Started Guide'
 date: 2023-02-05T16:17:07.342Z
 tags:
   - devops
