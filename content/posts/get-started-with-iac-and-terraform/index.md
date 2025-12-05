@@ -7,7 +7,7 @@ tags:
   - terraform
   - iac
 ---
-If you're new to the world of IT infrastructure, you may have heard the term "Infrastructure as Code" or "IAC" tossed around, but may not know exactly what it means. Essentially, IAC is an approach to managing IT infrastructure through the use of code. It's an important concept in modern IT infrastructure as it provides faster and more efficient infrastructure deployment, improved scalability, and better infrastructure management, among other benefits.
+x2f1 If you're new to the world of IT infrastructure, you may have heard the term "Infrastructure as Code" or "IAC" tossed around, but may not know exactly what it means. Essentially, IAC is an approach to managing IT infrastructure through the use of code. It's an important concept in modern IT infrastructure as it provides faster and more efficient infrastructure deployment, improved scalability, and better infrastructure management, among other benefits.
 
 In this blog post, we'll dive deeper into IAC, explore its key features and capabilities, and take a closer look at one of the most popular IAC tools - Terraform.
 
