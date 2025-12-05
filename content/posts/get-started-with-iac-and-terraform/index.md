@@ -122,7 +122,7 @@ To get started with Terraform, follow these steps:
 
 ## Summary
 
-In conclusion, Infrastructure as Code (IAC) is an approach to managing IT infrastructure through code, which provides numerous benefits such as faster and more efficient infrastructure deployment, improved scalability, better infrastructure management, consistency, and eliminates manual errors.
+In conclusion, Infrastructure as Code (IAC) is an approach to managing IT infrastructure through code, which provides numerous benefits such as faster and more efficient infrastructure deployment, improved scalability, better infrastructure management, consistency, and elimination of manual errors.
 
 There are many IAC tools available, including Terraform, Ansible, and Chef, each with its own unique features and capabilities. IAC is typically divided into two phases - initial setup and maintenance. Terraform is an open-source IAC tool that simplifies infrastructure provisioning by allowing users to define infrastructure resources in a simple and consistent manner.
 
@@ -130,6 +130,6 @@ Terraform can be used in a variety of scenarios, including cloud infrastructure 
 
 Ultimately, IAC tools like Terraform provide organizations with a more efficient and scalable approach to infrastructure management, enabling them to meet the changing needs of their business while reducing the risk of human error.
 
-🔗 Want to deepen your knowledge of Terraform? check my blog post on [How to provision a Kubernetes container engine with Terraform on Oracle Cloud Infrastructure (OCI)](https://safoorsafdar.com/post/how-to-provision-kubernetes-container-engine-with-terraform-on-oracle-cloud-oci).
+🔗 Want to deepen your knowledge of Terraform? Check my blog post on [How to provision a Kubernetes container engine with Terraform on Oracle Cloud Infrastructure (OCI)](https://safoorsafdar.com/post/how-to-provision-kubernetes-container-engine-with-terraform-on-oracle-cloud-oci).
 
 Hi! I am Safoor Safdar an experienced SRE and DevOps. [Read More](https://safoorsafdar.com/about). Don't hesitate to reach out! You can find me on [LinkedIn](https://linkedin.com/in/safoorsafdar), or simply shoot me an email at [me@safoorsafdar.com](mailto:me@safoorsafdar.com)
