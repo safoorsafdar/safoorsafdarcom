@@ -1,5 +1,5 @@
 ---
-title: Get started with IAC and Terraform
+title: 'Get started with IAC and Terraform '
 date: 2023-03-11T13:59:23.423Z
 tags:
   - devops
@@ -23,11 +23,7 @@ IAC provides numerous benefits, including faster and more efficient infrastructu
 
 There are many IAC tools available, including Terraform, Ansible, and Chef. Each tool has its own unique features and capabilities.
 
-| IAC Tool  | Main Focus                                       | Capabilities                                                      | Supported Providers       |
-| --------- | ------------------------------------------------ | ----------------------------------------------------------------- | ------------------------- |
-| Terraform | Infrastructure Provisioning                      | Declarative Syntax, Resource Graph, Dependency Management         | AWS, Azure, GCP, and more |
-| Ansible   | Configuration Management and Automation          | Agentless, Idempotent, Easy-to-learn language                     | AWS, Azure, GCP, and more |
-| Chef      | System-level Configuration and Policy Management | Recipe-based Configuration, Easy integration with Cloud platforms | AWS, Azure, GCP, and more |
+IAC ToolMain FocusCapabilitiesSupported ProvidersTerraformInfrastructure ProvisioningDeclarative Syntax, Resource Graph, Dependency ManagementAWS, Azure, GCP, and moreAnsibleConfiguration Management and AutomationAgentless, Idempotent, Easy-to-learn languageAWS, Azure, GCP, and moreChefSystem-level Configuration and Policy ManagementRecipe-based Configuration, Easy integration with Cloud platformsAWS, Azure, GCP, and more
 
 ### Declarative and Imperative Approaches in Terraform
 
@@ -37,20 +33,11 @@ Terraform uses a declarative approach to infrastructure management, meaning that
 
 While all IAC tools automate infrastructure management, they differ in their approach. Some tools use a declarative approach, which focuses on defining the desired state of infrastructure resources, while others use an imperative approach, which involves defining the steps required to achieve the desired state.
 
-| IAC Tool       | Approach    | Description                                                                                                              |
-| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Terraform      | Declarative | Defines the desired state of infrastructure resources and lets Terraform handle the details of how to achieve that state |
-| Ansible        | Declarative | Uses YAML-based configuration files to define the desired state of infrastructure resources                              |
-| Chef           | Declarative | Uses recipes to define the desired state of infrastructure resources and applies them to nodes                           |
-| Puppet         | Declarative | Uses a declarative language to define the desired state of infrastructure resources and applies changes to nodes         |
-| SaltStack      | Imperative  | Uses a domain-specific language to define the steps required to achieve the desired state of infrastructure resources    |
-| CFEngine       | Imperative  | Uses a declarative language to define the desired state of infrastructure resources and applies changes to nodes         |
-| PowerShell DSC | Declarative | Uses PowerShell scripts to define the desired state of infrastructure resources and applies changes to nodes             |
-| Kubernetes     | Declarative | Uses YAML-based configuration files to define the desired state of containers and their infrastructure requirements      |
+IAC ToolApproachDescriptionTerraformDeclarativeDefines the desired state of infrastructure resources and lets Terraform handle the details of how to achieve that stateAnsibleDeclarativeUses YAML-based configuration files to define the desired state of infrastructure resourcesChefDeclarativeUses recipes to define the desired state of infrastructure resources and applies them to nodesPuppetDeclarativeUses a declarative language to define the desired state of infrastructure resources and applies changes to nodesSaltStackImperativeUses a domain-specific language to define the steps required to achieve the desired state of infrastructure resourcesCFEngineImperativeUses a declarative language to define the desired state of infrastructure resources and applies changes to nodesPowerShell DSCDeclarativeUses PowerShell scripts to define the desired state of infrastructure resources and applies changes to nodesKubernetesDeclarativeUses YAML-based configuration files to define the desired state of containers and their infrastructure requirements
 
 ### Distinction between two phases in IAC - Initial setup and maintenance
 
-IAC is typically divided into two phases - initial setup and maintenance. 
+IAC is typically divided into two phases - initial setup and maintenance.
 
 **The initial setup** process for Infrastructure as Code (IAC) and Terraform involves writing the code that defines the infrastructure resources and automates their deployment. This step is crucial because it sets the foundation for the entire infrastructure provisioning process. The code defines the desired state of the infrastructure resources, which Terraform will then use to create and manage those resources.
 
@@ -74,18 +61,7 @@ Infrastructure provisioning involves the creation of infrastructure resources li
 
 Terraform can be used in a variety of scenarios, including cloud infrastructure provisioning, on-premises infrastructure provisioning, and multi-cloud deployments. It can also be used for continuous deployment and testing.
 
-| Use Case                    | Application                                                                                                                                   |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Infrastructure as Code      | Terraform allows for infrastructure provisioning through code, which provides version control and easy collaboration.                         |
-| Cloud Platform Provisioning | Terraform can be used to provision resources on major cloud providers such as AWS, Google Cloud, and Azure.                                   |
-| Multi-Cloud Management      | Terraform enables organizations to manage infrastructure across multiple cloud providers and on-premises data centers.                        |
-| DevOps Automation           | Terraform can automate infrastructure deployment, which helps to accelerate development cycles and reduce the risk of human error.            |
-| Continuous Delivery         | Terraform can be used as part of a continuous delivery pipeline to automate infrastructure provisioning and deployments.                      |
-| Compliance as Code          | Terraform allows for infrastructure to be provisioned with security and compliance policies in mind, providing an auditable trail of changes. |
-| Disaster Recovery           | Terraform can be used to quickly provision disaster recovery infrastructure in the event of a failure.                                        |
-| Immutable Infrastructure    | Terraform can be used to create immutable infrastructure, which helps to increase reliability and reduce maintenance overhead.                |
-| Microservices Deployment    | Terraform can be used to deploy microservices-based applications by provisioning the necessary infrastructure resources.                      |
-| Serverless Infrastructure   | Terraform can be used to provision serverless infrastructure on cloud platforms, such as AWS Lambda and Azure Functions.                      |
+Use CaseApplicationInfrastructure as CodeTerraform allows for infrastructure provisioning through code, which provides version control and easy collaboration.Cloud Platform ProvisioningTerraform can be used to provision resources on major cloud providers such as AWS, Google Cloud, and Azure.Multi-Cloud ManagementTerraform enables organizations to manage infrastructure across multiple cloud providers and on-premises data centers.DevOps AutomationTerraform can automate infrastructure deployment, which helps to accelerate development cycles and reduce the risk of human error.Continuous DeliveryTerraform can be used as part of a continuous delivery pipeline to automate infrastructure provisioning and deployments.Compliance as CodeTerraform allows for infrastructure to be provisioned with security and compliance policies in mind, providing an auditable trail of changes.Disaster RecoveryTerraform can be used to quickly provision disaster recovery infrastructure in the event of a failure.Immutable InfrastructureTerraform can be used to create immutable infrastructure, which helps to increase reliability and reduce maintenance overhead.Microservices DeploymentTerraform can be used to deploy microservices-based applications by provisioning the necessary infrastructure resources.Serverless InfrastructureTerraform can be used to provision serverless infrastructure on cloud platforms, such as AWS Lambda and Azure Functions.
 
 ## How Terraform Works
 
@@ -139,21 +115,21 @@ To get started with Terraform, follow these steps:
 
 1. Install Terraform on your local machine.
 2. Write your Terraform configuration file in HCL.
-3. Initialize your working directory using the **`terraform init`** command.
-4. Use the **`terraform plan`** command to preview changes to the infrastructure.
-5. Use the **`terraform apply`** command to create, modify, or delete resources.
-6. Use the **`terraform destroy`** command to remove all resources created by Terraform.
+3. Initialize your working directory using the `terraform init` command.
+4. Use the `terraform plan` command to preview changes to the infrastructure.
+5. Use the `terraform apply` command to create, modify, or delete resources.
+6. Use the `terraform destroy` command to remove all resources created by Terraform.
 
 ## Summary
 
-In conclusion, Infrastructure as Code (IAC) is an approach to managing IT infrastructure through code, which provides numerous benefits such as faster and more efficient infrastructure deployment, improved scalability, better infrastructure management, consistency, and eliminates manual errors. 
+In conclusion, Infrastructure as Code (IAC) is an approach to managing IT infrastructure through code, which provides numerous benefits such as faster and more efficient infrastructure deployment, improved scalability, better infrastructure management, consistency, and eliminates manual errors.
 
-There are many IAC tools available, including Terraform, Ansible, and Chef, each with its own unique features and capabilities. IAC is typically divided into two phases - initial setup and maintenance. Terraform is an open-source IAC tool that simplifies infrastructure provisioning by allowing users to define infrastructure resources in a simple and consistent manner. 
+There are many IAC tools available, including Terraform, Ansible, and Chef, each with its own unique features and capabilities. IAC is typically divided into two phases - initial setup and maintenance. Terraform is an open-source IAC tool that simplifies infrastructure provisioning by allowing users to define infrastructure resources in a simple and consistent manner.
 
-Terraform can be used in a variety of scenarios, including cloud infrastructure provisioning, on-premises infrastructure provisioning, and multi-cloud deployments, making it a versatile tool for infrastructure management. 
+Terraform can be used in a variety of scenarios, including cloud infrastructure provisioning, on-premises infrastructure provisioning, and multi-cloud deployments, making it a versatile tool for infrastructure management.
 
 Ultimately, IAC tools like Terraform provide organizations with a more efficient and scalable approach to infrastructure management, enabling them to meet the changing needs of their business while reducing the risk of human error.
 
-🔗 Want to deepen your knowledge of Terraform?  check my blog post on [How to provision a Kubernetes container engine with Terraform on Oracle Cloud Infrastructure (OCI)](https://safoorsafdar.com/post/how-to-provision-kubernetes-container-engine-with-terraform-on-oracle-cloud-oci).
+🔗 Want to deepen your knowledge of Terraform? check my blog post on [How to provision a Kubernetes container engine with Terraform on Oracle Cloud Infrastructure (OCI)](https://safoorsafdar.com/post/how-to-provision-kubernetes-container-engine-with-terraform-on-oracle-cloud-oci).
 
-Hi! I am Safoor Safdar an experienced SRE and DevOps. [Read More](https://safoorsafdar.com/about). Don't hesitate to reach out! You can find me on [LinkedIn](https://linkedin.com/in/safoorsafdar), or simply shoot me an email at[me@safoorsafdar.com](mailto:me@safoorsafdar.com)
+Hi! I am Safoor Safdar an experienced SRE and DevOps. [Read More](https://safoorsafdar.com/about). Don't hesitate to reach out! You can find me on [LinkedIn](https://linkedin.com/in/safoorsafdar), or simply shoot me an email at [me@safoorsafdar.com](mailto:me@safoorsafdar.com)
