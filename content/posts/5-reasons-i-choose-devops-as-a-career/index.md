@@ -4,6 +4,7 @@ date: 2022-12-04T02:10:50.948Z
 tags:
   - devops
   - aws
+excerpt: this is excertp
 ---
 I have been working in IT for over 10 years. I have had the chance to work with a variety of technologies and companies. I have worked as a developer, a tester, an architect, and a technical lead.
 
