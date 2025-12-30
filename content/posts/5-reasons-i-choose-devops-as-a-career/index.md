@@ -7,6 +7,8 @@ tags:
 ---
 I have been working in IT for over 10 years. I have had the chance to work with a variety of technologies and companies. I have worked as a developer, a tester, an architect, and a technical lead.
 
+this is test
+
 I have seen many different ways of doing things and have learned about the pros and cons of each approach.
 
 When I started my career as a software developer, it was obvious that DevOps was not even on the horizon. It was just not something people talked about at all. It wasn't until later that I realized how important it is for companies to adopt DevOps practices if they want to be successful in this new world of technology.
