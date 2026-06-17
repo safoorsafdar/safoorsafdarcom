@@ -29,7 +29,7 @@ This is one of my favorite aspects of the DevOps community. I have never seen su
 
 ### 3. There are many opportunities for personal growth in this field.
 
-Another reason why I like being a DevOps engineer is that there's always room for improvement — whether it's learning new technologies or improving your systems administration skills, there are always new things to learn! And because DevOps requires so many different skill sets, you can always find something new to learn even if you're already experienced in another
+Another reason why I like being a DevOps engineer is that there's always room for improvement, whether it's learning new technologies or improving your systems administration skills, there are always new things to learn! And because DevOps requires so many different skill sets, you can always find something new to learn even if you're already experienced in another
 
 ### 4. High Demand for DevOps Professionals
 
